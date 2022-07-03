@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  width: 100%;
+  min-height: 88px;
+  margin: auto;
+  background-color: #1C1C21;
+}
+
+.headerContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.listNavigation {
+  display: flex;
+  justify-content: start;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: end;
+  outline: none;
+  text-decoration: none;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+}
+
+.profile {
+  display: flex;
+  justify-content: end;
+  text-decoration: none;
+}
