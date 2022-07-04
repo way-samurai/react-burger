@@ -6,7 +6,7 @@ import appStyle from './app.module.css';
 
 function App() {
   return (
-    <div className={appStyle.App}>
+    <div className={appStyle.app}>
       <AppHeader />
       <main className={appStyle.main}>
         <BurgerIngredients data={data}/>

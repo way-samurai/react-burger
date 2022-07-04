@@ -1,4 +1,4 @@
-.App {
+.app {
   display: flex;
   flex-direction: column;
 
@@ -6,7 +6,7 @@
   margin: 0 auto;
 }
 
-.Main {
+.main {
   display: flex;
 
   width: 100%;

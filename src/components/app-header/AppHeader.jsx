@@ -8,7 +8,7 @@ const AppHeader = () => {
       <div className={`${headerStyles.headerContainer}`}>
         <nav>
           <div className={`${headerStyles.listNavigation}`}>
-            <a href='/' className={`${headerStyles.item} pl-5 pr-5 pb-5 pt-5 mr-2`}><BurgerIcon type="primary" /><span className='text text_type_main-default text_color_inactive pl-2'>Конструктор</span></a>
+            <a href='/' className={`${headerStyles.item} pl-5 pr-5 pb-5 pt-5 mr-2`}><BurgerIcon type="primary" /><span className='text text_type_main-default pl-2'>Конструктор</span></a>
             <a href='/' className={`${headerStyles.item} pl-5 pr-5 pb-5 pt-5`}><ListIcon type="secondary" /><span className='text text_type_main-default text_color_inactive pl-2'>Лента заказов</span></a>
           </div>
         </nav> 

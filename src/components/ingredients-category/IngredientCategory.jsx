@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Ingredient from "./ingredient/Ingredient.jsx";
 import styles from "./ingredientCategory.module.css";
 import PropTypes from "prop-types";

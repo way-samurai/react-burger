@@ -1,0 +1,27 @@
+.ingredient {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 272px;
+  cursor: pointer;
+  transition: opacity 1s ease-in-out;
+}
+
+.ingredient:hover {
+  opacity: 0.6;
+}
+
+.priceBox {
+  display: flex;
+}
+
+.price {
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  vertical-align: text-top;
+}

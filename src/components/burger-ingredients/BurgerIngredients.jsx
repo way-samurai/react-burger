@@ -16,7 +16,7 @@ const BurgerIngredients = (props) => {
   };
   
   return (
-    <section className='mr-10'>
+    <section className={`${ingredientsStyles.section} mr-10`}>
       <h1 className={`${ingredientsStyles.heading} text text_type_main-large pt-10 pb-5`}>Соберите бургер</h1>
       <div className={`${ingredientsStyles.tabContainer}`}>
         <Tab value="bun" active={current === "bun"} onClick={(evt) => clickOnTab(evt, bunRef)}>Булки</Tab>
