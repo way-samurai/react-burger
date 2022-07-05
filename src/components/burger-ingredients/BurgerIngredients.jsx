@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import ingredientsStyles from './burgerIngredients.module.css';
-import IngredientsCategory from '../ingredients-category/IngredientCategory'
+import IngredientsCategory from '../ingredients-category/IngredientsCategory'
 import PropTypes from 'prop-types';
-import IngredientPropType from '../../utils/prop-types';
+import ingredientPropType from '../../utils/prop-types';
 
 const BurgerIngredients = (props) => {
   const [current, setCurrent] = useState('bun');
@@ -23,7 +23,7 @@ const BurgerIngredients = (props) => {
         <Tab value="sauce" active={current === "sauce"} onClick={(evt) => clickOnTab(evt, sauceRef)}>Соусы</Tab>
         <Tab value="main" active={current === "main"} onClick={(evt) => clickOnTab(evt, mainRef)}>Начинки</Tab>
       </div>
-      <ul className={`${ingredientsStyles.list}`}>
+      <ul className={`${ingredientsStyles.list} mt-10 `}>
         <IngredientsCategory data={props.data} type="bun" tabRef={bunRef} name="Булки" id="one"></IngredientsCategory>  {/* повесить модалки!*/}
         <IngredientsCategory data={props.data} type="sauce" tabRef={sauceRef} name="Соусы" id="two"></IngredientsCategory>
         <IngredientsCategory data={props.data} type="main" tabRef={mainRef} name="Начинки" id="three"></IngredientsCategory>
@@ -33,7 +33,7 @@ const BurgerIngredients = (props) => {
 }
 
 BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(IngredientPropType.isRequired).isRequired
+  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired
 }
 
 export default BurgerIngredients;

@@ -1,0 +1,49 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 600px;
+  width: 100%;
+}
+
+.stuffingList {
+  height: calc(100vh - 516px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  list-style-type: none;
+  padding: 0;
+}
+
+.stuffingList::-webkit-scrollbar {
+  background-color: #2F2F37;
+  width: 8px;
+}
+
+.stuffingList::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+}
+
+.stuffingItem {
+  display: flex;
+  align-items: center;
+}
+
+.stuffingItem:last-of-type {
+  margin-bottom: 0;
+}
+
+.total {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.priceBox {
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  padding-right: 9.5px;
+}

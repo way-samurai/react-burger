@@ -2,12 +2,12 @@ import React from "react";
 import Ingredient from "../ingredient/Ingredient.jsx";
 import styles from "./ingredientCategory.module.css";
 import PropTypes from "prop-types";
-import IngredientPropType from '../../utils/prop-types';
+import ingredientPropType from '../../utils/prop-types';
 
 const IngredientCategory = (props) => {
   return (
     <section>
-      <h2 className="text text_type_main-medium mt-10 mb-6" ref={props.tabRef}>
+      <h2 className="text text_type_main-medium mb-6" ref={props.tabRef}>
         {props.name}
       </h2>
       <ul className={`${styles.ingredients}`}>
@@ -28,7 +28,7 @@ const IngredientCategory = (props) => {
 }
 
 IngredientCategory.propTypes = {
-  data: PropTypes.arrayOf(IngredientPropType).isRequired,
+  data: PropTypes.arrayOf(ingredientPropType).isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   tabRef: PropTypes.oneOfType([
