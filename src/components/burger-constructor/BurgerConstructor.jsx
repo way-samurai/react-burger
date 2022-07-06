@@ -23,7 +23,7 @@ const BurgerConstructor = (props) => {
     <section className={`${styles.section} pt-25`}>
       {active && (
         <Modal title="" onClose={toggleModal}>
-          {/*<OrderDetails />  Допилить и будет работать */}
+          <OrderDetails />
         </Modal>
       )}
       <div className="ml-4">
