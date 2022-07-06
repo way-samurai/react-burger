@@ -1,6 +1,7 @@
 .section {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   box-sizing: border-box;
   max-width: 600px;
@@ -10,7 +11,7 @@
 .stuffingList {
   height: calc(100vh - 516px);
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   list-style-type: none;
   padding: 0;
 }

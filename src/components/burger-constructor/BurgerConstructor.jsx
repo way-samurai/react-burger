@@ -8,16 +8,24 @@ import {
 import styles from "./burgerConstructor.module.css";
 import PropTypes from 'prop-types';
 import ingredientPropType from '../../utils/prop-types';
+import Modal from "../modal/Modal";
+import OrderDetails from "../order-details/OrderDetails"
 
 const BurgerConstructor = (props) => {
   const ingredients = props.data.filter((item) => item.type !== "bun");
   const bun = props.data.find((item) => item.type === "bun");
   const totalPrice = ingredients.reduce((total, current) => total + current.price, bun.price * 2);
+
   const [active, setActive] = useState(false);
   const toggleModal = () => setActive(!active);
 
   return (
     <section className={`${styles.section} pt-25`}>
+      {active && (
+        <Modal title="" onClose={toggleModal}>
+          {/*<OrderDetails />  Допилить и будет работать */}
+        </Modal>
+      )}
       <div className="ml-4">
         <ConstructorElement
           type="top"
