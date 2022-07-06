@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import IngredientsDetailsItem from "../ingredients-details-item/ingredients-details-item";
 
 const IngredientDetails = (props) => {
-  console.log(props)
   return (
     <>
       <h2 className={`${styles.title}  text text_type_main-large ml-10 pt-5`}>
