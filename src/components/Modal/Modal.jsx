@@ -24,7 +24,7 @@ const Modal = ( {title, onClose, children} ) => {
   return createPortal (
     <>
       <div className={styles.modal}>
-        <h3 className={`${styles.title} text text_type_main-large pt-15 pb-1 pl-10`}>
+        <h3 className={`${styles.title} text text_type_main-large pt-10 pb-1 pl-10`}>
           {title}
         </h3>
         <button className={styles.closeButton} onClick={onClose}>

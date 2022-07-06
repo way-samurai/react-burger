@@ -14,7 +14,7 @@ const IngredientCategory = (props) => {
     <section className="mb-10">
       {active && (
         <Modal onClose={toggleModal}>
-          {/*<IngredientDetails {...active}/>  Допилить и будет работать */}
+          <IngredientDetails {...active}/>
         </Modal>
       )}
       <h2 className="text text_type_main-medium mb-6" ref={props.tabRef}>
