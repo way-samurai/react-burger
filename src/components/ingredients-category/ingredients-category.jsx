@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Ingredient from "../ingredient/Ingredient.jsx";
-import styles from "./ingredientCategory.module.css";
+import Ingredient from "../ingredient/ingredient.jsx";
+import styles from "./ingredients-category.module.css";
 import PropTypes from "prop-types";
 import ingredientPropType from '../../utils/prop-types';
-import Modal from "../modal/Modal";
+import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails.jsx";
 
 const IngredientCategory = (props) => {

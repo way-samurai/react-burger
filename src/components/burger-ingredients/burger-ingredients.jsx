@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import ingredientsStyles from './burgerIngredients.module.css';
-import IngredientsCategory from '../ingredients-category/IngredientsCategory'
+import ingredientsStyles from "./burger-ingredients.module.css";
+import IngredientsCategory from '../ingredients-category/ingredients-category'
 import PropTypes from 'prop-types';
 import ingredientPropType from '../../utils/prop-types';
 

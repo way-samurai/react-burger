@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './orderDetails.module.css'
+import style from "./order-details.module.css";
 import orderAccepted from '../../images/order_accpeted.png'
 
 const OrderDetails = () => {

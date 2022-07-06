@@ -5,11 +5,11 @@ import {
   Button,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import styles from "./burgerConstructor.module.css";
+import styles from "./burger-constructor.module.css";
 import PropTypes from 'prop-types';
 import ingredientPropType from '../../utils/prop-types';
-import Modal from "../modal/Modal";
-import OrderDetails from "../order-details/OrderDetails"
+import Modal from "../modal/modal";
+import OrderDetails from "../order-details/order-details"
 
 const BurgerConstructor = (props) => {
   const ingredients = props.data.filter((item) => item.type !== "bun");
