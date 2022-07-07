@@ -11,9 +11,9 @@ import ingredientPropType from '../../utils/prop-types';
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details"
 
-const BurgerConstructor = (props) => {
-  const ingredients = props.data.filter((item) => item.type !== "bun");
-  const bun = props.data.find((item) => item.type === "bun");
+const BurgerConstructor = ({data}) => {
+  const ingredients = data.filter((item) => item.type !== "bun");
+  const bun = data.find((item) => item.type === "bun");
   const totalPrice = ingredients.reduce((total, current) => total + current.price, bun.price * 2);
 
   const [active, setActive] = useState(false);
@@ -36,7 +36,7 @@ const BurgerConstructor = (props) => {
         />
       </div>
       <ul className={`${styles.stuffingList}`}>
-        {props.data.map((item) => {
+        {data.map((item) => {
           if (item.type !== "bun") {
             return (
               <li className={`${styles.stuffingItem} mb-4 mr-4 ml-4`} key={item._id}>

@@ -4,9 +4,9 @@ import styles from "./ingredients-category.module.css";
 import PropTypes from "prop-types";
 import ingredientPropType from '../../utils/prop-types';
 import Modal from "../modal/modal";
-import IngredientDetails from "../ingredient-details/IngredientDetails.jsx";
+import IngredientDetails from "../ingredient-details/ingredientDetails.jsx";
 
-const IngredientCategory = (props) => {
+const IngredientCategory = ({tabRef, name, data, type}) => {
   const [active, setActive] = useState(null);
   const toggleModal = () => setActive(null);
 
@@ -17,12 +17,12 @@ const IngredientCategory = (props) => {
           <IngredientDetails {...active}/>
         </Modal>
       )}
-      <h2 className="text text_type_main-medium mb-6" ref={props.tabRef}>
-        {props.name}
+      <h2 className="text text_type_main-medium mb-6" ref={tabRef}>
+        {name}
       </h2>
       <ul className={`${styles.ingredients}`}>
-        {props.data.map((e) => {
-          if (e.type === props.type) {
+        {data.map((e) => {
+          if (e.type === type) {
             return (
               <li onClick={() => {setActive(e)}} key={e._id}>
                 <Ingredient {...e}/>

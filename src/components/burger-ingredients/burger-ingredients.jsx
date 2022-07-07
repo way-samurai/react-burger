@@ -5,7 +5,7 @@ import IngredientsCategory from '../ingredients-category/ingredients-category'
 import PropTypes from 'prop-types';
 import ingredientPropType from '../../utils/prop-types';
 
-const BurgerIngredients = (props) => {
+const BurgerIngredients = ( {data} ) => {
   const [current, setCurrent] = useState('bun');
   const bunRef = useRef();
   const sauceRef = useRef();
@@ -24,9 +24,9 @@ const BurgerIngredients = (props) => {
         <Tab value="main" active={current === "main"} onClick={(evt) => clickOnTab(evt, mainRef)}>Начинки</Tab>
       </div>
       <ul className={`${ingredientsStyles.list} mt-10 `}>
-        <IngredientsCategory data={props.data} type="bun" tabRef={bunRef} name="Булки" id="one"></IngredientsCategory> 
-        <IngredientsCategory data={props.data} type="sauce" tabRef={sauceRef} name="Соусы" id="two"></IngredientsCategory>
-        <IngredientsCategory data={props.data} type="main" tabRef={mainRef} name="Начинки" id="three"></IngredientsCategory>
+        <IngredientsCategory data={data} type="bun" tabRef={bunRef} name="Булки" id="one"></IngredientsCategory> 
+        <IngredientsCategory data={data} type="sauce" tabRef={sauceRef} name="Соусы" id="two"></IngredientsCategory>
+        <IngredientsCategory data={data} type="main" tabRef={mainRef} name="Начинки" id="three"></IngredientsCategory>
       </ul>
     </section>
   )
