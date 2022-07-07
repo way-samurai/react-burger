@@ -4,7 +4,7 @@ import styles from "./ingredients-category.module.css";
 import PropTypes from "prop-types";
 import ingredientPropType from '../../utils/prop-types';
 import Modal from "../modal/modal";
-import IngredientDetails from "../ingredient-details/ingredientDetails.jsx";
+import IngredientDetails from "../ingredient-details/ingredient-details.jsx";
 
 const IngredientCategory = ({tabRef, name, data, type}) => {
   const [active, setActive] = useState(null);
