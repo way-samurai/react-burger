@@ -8,7 +8,7 @@ import {
 import styles from "./burger-constructor.module.css";
 import PropTypes from 'prop-types';
 import ingredientPropType from '../../utils/prop-types';
-import Modal from "../modal/modal";
+import Modal from "../modal1/modal";
 import OrderDetails from "../order-details/order-details"
 
 const BurgerConstructor = (props) => {
