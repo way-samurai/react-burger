@@ -24,9 +24,9 @@ const BurgerIngredients = ( {data} ) => {
         <Tab value="main" active={current === "main"} onClick={(evt) => clickOnTab(evt, mainRef)}>Начинки</Tab>
       </div>
       <ul className={`${ingredientsStyles.list} mt-10 `}>
-        <IngredientsCategory data={data} type="bun" tabRef={bunRef} name="Булки" id="one"></IngredientsCategory> 
-        <IngredientsCategory data={data} type="sauce" tabRef={sauceRef} name="Соусы" id="two"></IngredientsCategory>
-        <IngredientsCategory data={data} type="main" tabRef={mainRef} name="Начинки" id="three"></IngredientsCategory>
+        <IngredientsCategory data={data} type="bun" tabRef={bunRef} name="Булки" id="bun" />
+        <IngredientsCategory data={data} type="sauce" tabRef={sauceRef} name="Соусы" id="sauce" />
+        <IngredientsCategory data={data} type="main" tabRef={mainRef} name="Начинки" id="main" />
       </ul>
     </section>
   )

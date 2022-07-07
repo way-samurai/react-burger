@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Ingredient from "../ingredient/ingredient.jsx";
+import Ingredient from "../ingredient/ingredient1.jsx";
 import styles from "./ingredients-category.module.css";
 import PropTypes from "prop-types";
 import ingredientPropType from '../../utils/prop-types';
