@@ -38,13 +38,13 @@ const IngredientCategory = ({tabRef, name, data, type}) => {
 }
 
 IngredientCategory.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType).isRequired,
+  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   tabRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) })
-  ])
-}
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
+};
 
 export default IngredientCategory

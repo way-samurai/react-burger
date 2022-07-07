@@ -7,7 +7,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-constructor.module.css";
 import PropTypes from 'prop-types';
-import ingredientPropType from '../../utils/prop-types';
+import ingredientPropTypes from '../../utils/prop-types';
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details"
 
@@ -77,7 +77,8 @@ const BurgerConstructor = ({data}) => {
 }
 
 BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType).isRequired
-}
+  data: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
+  onClick: PropTypes.func,
+};
 
 export default BurgerConstructor
