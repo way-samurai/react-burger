@@ -1,0 +1,31 @@
+.section {
+  box-sizing: border-box;
+  max-width: 600px;
+  width: 100%;
+}
+
+.heading {
+  margin: 0;
+}
+
+.tabContainer {
+  display: flex;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+
+  height: calc(100vh - 324px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.list::-webkit-scrollbar {
+  background-color: #2F2F37;
+  width: 8px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+}
