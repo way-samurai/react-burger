@@ -7,7 +7,6 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-constructor.module.css";
 import PropTypes from "prop-types";
-import ingredientPropTypes from '../../utils/prop-types';
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import { IngredientsContext } from "../../services/ingredients-context";
@@ -15,7 +14,6 @@ import { OrderContext } from "../../services/order-context";
 import { apiPostOrder } from "../../utils/api/api";
 
 const BurgerConstructor = () => { 
-
   const { data } = React.useContext(IngredientsContext); 
   const [orderNumber, setOrderNumber] = useState(0);
   
@@ -108,7 +106,6 @@ const BurgerConstructor = () => {
 }
 
 BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
   onClick: PropTypes.func,
 };
 

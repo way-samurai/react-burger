@@ -9,7 +9,6 @@ import IngredientDetails from "../ingredient-details/ingredient-details.jsx";
 const IngredientCategory = ({tabRef, name, data, type}) => {
   const [active, setActive] = useState(null);
   const toggleModal = () => setActive(null);
-
   return (
     <section className="mb-10">
       {active && (

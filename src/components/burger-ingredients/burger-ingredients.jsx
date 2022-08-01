@@ -1,11 +1,11 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import ingredientsStyles from "./burger-ingredients.module.css";
-import IngredientsCategory from '../ingredients-category/ingredients-category'
-import PropTypes from 'prop-types';
-import ingredientPropType from '../../utils/prop-types';
+import IngredientsCategory from '../ingredients-category/ingredients-category';
+import { IngredientsContext } from "../../services/ingredients-context";
 
-const BurgerIngredients = ( {data} ) => {
+const BurgerIngredients = () => {
+  const { data } = useContext(IngredientsContext);
   const [current, setCurrent] = useState('bun');
   const bunRef = useRef();
   const sauceRef = useRef();
@@ -30,10 +30,6 @@ const BurgerIngredients = ( {data} ) => {
       </ul>
     </section>
   )
-}
-
-BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired
 }
 
 export default BurgerIngredients;

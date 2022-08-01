@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect } from "react";
 import AppHeader from "../app-header/app-header";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
@@ -33,7 +33,7 @@ function App() {
           {state.hasError && "Произошла ошибка"}
           {!state.isLoading && !state.hasError && (
             <>
-              {/* <BurgerIngredients /> */}
+              <BurgerIngredients /> 
               <BurgerConstructor />
             </>
           )}
