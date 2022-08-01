@@ -7,11 +7,11 @@ import { getIngredients } from "../../utils/api/api";
 import { IngredientsContext } from "../../services/ingredients-context";
 
 function App() {
-   const [state, setLoadedDataState] = useState({
-     data: [],
-     hasError: false,
-     isLoading: true,
-   });
+  const [state, setLoadedDataState] = useState({
+    data: [],
+    hasError: false,
+    isLoading: true,
+  });
 
   useEffect(() => {
     setLoadedDataState({ ...state, hasError: false, isLoading: true });
@@ -33,7 +33,7 @@ function App() {
           {state.hasError && "Произошла ошибка"}
           {!state.isLoading && !state.hasError && (
             <>
-              <BurgerIngredients /> 
+              <BurgerIngredients />
               <BurgerConstructor />
             </>
           )}
