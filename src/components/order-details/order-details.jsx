@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import style from "./order-details.module.css";
 import orderAccepted from '../../images/order_accpeted.png';
-import { OrderContext } from "../../services/order-context";
+import PropTypes from "prop-types";
 
-const OrderDetails = () => {
-  const orderNumber = useContext(OrderContext);
+const OrderDetails = ({orderNumber}) => {
 
 	return (
 		<div className={`${style.container} pl-25 pr-25`}>
@@ -16,5 +15,9 @@ const OrderDetails = () => {
 		</div>
 	)
 }
+
+OrderDetails.propTypes = {
+  orderNumber: PropTypes.string.isRequired 
+};
 
 export default OrderDetails;

@@ -6,11 +6,9 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-constructor.module.css";
-import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import { IngredientsContext } from "../../services/ingredients-context";
-import { OrderContext } from "../../services/order-context";
 import { apiPostOrder } from "../../utils/api/api";
 
 const BurgerConstructor = () => {
@@ -34,7 +32,7 @@ const BurgerConstructor = () => {
       toggleModal();
     } catch (error) {
       setOrderNumber(0);
-      throw new Error(`Что-то пошло не так: Ошибка ${error}`);
+      console.log(error)
     }
   };
 
@@ -42,9 +40,7 @@ const BurgerConstructor = () => {
     <section className={`${styles.section} pt-25`}>
       {active && (
         <Modal title="" onClose={toggleModal}>
-          <OrderContext.Provider value={orderNumber}>
-            <OrderDetails />
-          </OrderContext.Provider>
+          <OrderDetails orderNumber={orderNumber}/>
         </Modal>
       )}
       <div className="ml-4">
@@ -106,10 +102,6 @@ const BurgerConstructor = () => {
       </div>
     </section>
   );
-};
-
-BurgerConstructor.propTypes = {
-  onClick: PropTypes.func,
 };
 
 export default BurgerConstructor;

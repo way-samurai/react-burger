@@ -1,5 +1,7 @@
 import React from "react";
 import style from "./ingredients-details-item.module.css";
+import PropTypes from 'prop-types';
+
 
 const IngredientsDetailsItem = ({text, value}) => {
   return (
@@ -12,6 +14,11 @@ const IngredientsDetailsItem = ({text, value}) => {
       </p>
     </li>
   );
+};
+
+IngredientsDetailsItem.propTypes = {
+  text: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
 };
 
 export default IngredientsDetailsItem;
