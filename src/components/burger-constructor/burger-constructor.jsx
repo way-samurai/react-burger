@@ -8,11 +8,13 @@ import {
 import styles from "./burger-constructor.module.css";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
-import { IngredientsContext } from "../../services/ingredients-context";
 import { apiPostOrder } from "../../utils/api/api";
+import { useSelector } from "react-redux";
 
 const BurgerConstructor = () => {
-  const { data } = React.useContext(IngredientsContext);
+  const isLoading = useSelector((store) => store.burgerIngredients.isLoading);
+
+  const { data } = [];
   const [orderNumber, setOrderNumber] = useState(0);
 
   const ingredients = data.filter((item) => item.type !== "bun");
@@ -23,7 +25,7 @@ const BurgerConstructor = () => {
   );
 
   const [active, setActive] = useState(false);
-  const toggleModal = () => setActive(!active);
+  const toggleModal = () => !isLoading;
   const makeOrder = async () => {
     try {
       const res = await apiPostOrder(ingredients.map((item) => item._id));
@@ -38,9 +40,9 @@ const BurgerConstructor = () => {
 
   return (
     <section className={`${styles.section} pt-25`}>
-      {active && (
+      {isLoading && (
         <Modal title="" onClose={toggleModal}>
-          <OrderDetails orderNumber={orderNumber}/>
+          <OrderDetails orderNumber={orderNumber} />
         </Modal>
       )}
       <div className="ml-4">

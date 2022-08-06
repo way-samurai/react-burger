@@ -5,10 +5,10 @@ import { ingredientReducer } from "./ingredient";
 import { orderReducer } from "./order-details";
 
 const rootReducer = combineReducers({
-  order: orderReducer,
-  burgerIngredients: ingredientsReducer,
-  ingredientDetails: ingredientReducer,
-  burgerConstructor: constructorReducer
+  order: orderReducer, //Объект созданного заказа
+  burgerIngredients: ingredientsReducer, //список всех полученных ингредиентов
+  ingredientDetails: ingredientReducer,  //объект текущего просматриваемого ингредиента
+  burgerConstructor: constructorReducer, //список всех ингредиентов в текущем конструкторе бургера
 });
 
 export default rootReducer

@@ -1,11 +1,10 @@
-import { useState, useRef, useContext } from 'react';
+import { useState, useRef } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import ingredientsStyles from "./burger-ingredients.module.css";
 import IngredientsCategory from '../ingredients-category/ingredients-category';
-import { IngredientsContext } from "../../services/ingredients-context";
 
 const BurgerIngredients = () => {
-  const { data } = useContext(IngredientsContext);
+  const { data } = [];
   const [current, setCurrent] = useState('bun');
   const bunRef = useRef();
   const sauceRef = useRef();
