@@ -33,8 +33,8 @@ function App() {
           {state.hasError && "Произошла ошибка"}
           {!state.isLoading && !state.hasError && (
             <>
-              <BurgerIngredients />
-              <BurgerConstructor />
+              {/* <BurgerIngredients /> */}
+              {/* <BurgerConstructor /> */}
             </>
           )}
         </main>
