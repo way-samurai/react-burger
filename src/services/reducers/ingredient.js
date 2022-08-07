@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   data: null,
-  modalActive: false, //состояние для открытия модалок
+  modalActive: false, 
   dataIngredientDetails: null,
 }
 

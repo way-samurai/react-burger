@@ -21,7 +21,7 @@ import ConstructorItems from "../burger-constructor-items/burger-constructor-ite
 const BurgerConstructor = () => {
   const modalActive = useSelector((store) => store.burgerIngredients.modalActive);
   const { bun, ingredients } = useSelector((store) => store.burgerConstructor);
-	const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
 
   const itemsId = useMemo(
@@ -76,7 +76,7 @@ const BurgerConstructor = () => {
         {bun || ingredients.length > 0 ? (
           <div className={styles.staffingContainer}>
             {bun && (
-               <div className="ml-8">  
+              <div className="ml-8">
                 <ConstructorElement
                   type="top"
                   isLocked={true}
@@ -119,11 +119,11 @@ const BurgerConstructor = () => {
           <div
             className={`${styles.emptyStaffingContainer} text text_type_main-medium text_color_inactive`}
           >
-            Перетащите сюда булку
+            Перетащите сюда булку и начинку!
           </div>
         )}
       </div>
-      {bun && ingredients.length > 0 && (
+      {(bun || ingredients.length > 0) && (
         <div className={`${styles.total} mt-10`}>
           <div className={`${styles.priceBox} mr-10`}>
             <p className={`${styles.price} text text_type_digits-medium`}>
@@ -131,15 +131,28 @@ const BurgerConstructor = () => {
             </p>
             <CurrencyIcon type="primary" />
           </div>
-          <Button
-            type="primary"
-            size="large"
-            onClick={() => {
-              orderDetails(itemsId);
-            }}
-          >
-            Оформить заказ
-          </Button>
+          {(ingredients.length === 0 || bun === null) ? (
+            <Button
+              type="primary"
+              size="large"
+              onClick={() => {
+                orderDetails(itemsId);
+              }}
+              disabled
+            >
+              Оформить заказ
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              size="large"
+              onClick={() => {
+                orderDetails(itemsId);
+              }}
+            >
+              Оформить заказ
+            </Button>
+          )}
         </div>
       )}
     </section>
