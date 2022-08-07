@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, } from "react";
+import { useEffect, useMemo, useState, } from "react";
 import {
   ConstructorElement,
   CurrencyIcon,
@@ -15,8 +15,6 @@ import {
 } from "../../services/actions/constructor";
 import { useDrop } from "react-dnd";
 import ConstructorItems from "../burger-constructor-items/burger-constructor-items";
-
-
 
 const BurgerConstructor = () => {
   const { bun, ingredients } = useSelector((store) => store.burgerConstructor);

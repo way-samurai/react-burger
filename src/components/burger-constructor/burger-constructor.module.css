@@ -52,12 +52,6 @@
   background-color: #8585AD;
 }
 
-.stuffingItem {
-  display: flex;
-  align-items: center;
-}  
-/* убрать если не пригодится */
-
 .stuffingItem:last-of-type {
   margin-bottom: 0;
 }
