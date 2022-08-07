@@ -76,7 +76,7 @@ const BurgerConstructor = () => {
         {bun || ingredients.length > 0 ? (
           <div className={styles.staffingContainer}>
             {bun && (
-              <div className="ml-8">
+              <div className="ml-10">
                 <ConstructorElement
                   type="top"
                   isLocked={true}
@@ -104,7 +104,7 @@ const BurgerConstructor = () => {
             </ul>
 
             {bun && (
-              <div className="ml-8">
+              <div className="ml-10">
                 <ConstructorElement
                   type="bottom"
                   isLocked={true}
