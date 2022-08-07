@@ -9,7 +9,6 @@ import rootReducer from './services/reducers/rootReducer';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-//Инициализируем хранилище
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 const root = ReactDOM.createRoot(

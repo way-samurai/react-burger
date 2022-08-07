@@ -13,7 +13,7 @@ const IngredientCategory = ({tabRef, name, type}) => {
   const toggleModal = () => setActive(null);
 
   return (
-    <section className="mb-10">
+    <section className="mb-10" id={type}>
       {active && (
         <Modal onClose={toggleModal}>
           <IngredientDetails {...active}/>
@@ -40,7 +40,6 @@ const IngredientCategory = ({tabRef, name, type}) => {
 }
 
 IngredientCategory.propTypes = {
-  //data: PropTypes.arrayOf(ingredientType.isRequired).isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   tabRef: PropTypes.oneOfType([

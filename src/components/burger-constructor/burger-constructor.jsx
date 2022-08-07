@@ -17,14 +17,10 @@ const BurgerConstructor = () => {
   const dispatch = useDispatch();
 
   const totalPrice = () => {
-    if (ingredients === null) {
-      return 0;
-    } else {
       ingredients.reduce(
         (total, current) => total + current.price,
         bun.price * 2
       );
-    }
   }
 
   const filling = useMemo(
