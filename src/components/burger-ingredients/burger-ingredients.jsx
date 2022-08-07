@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useInView } from "react-intersection-observer";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import ingredientsStyles from "./burger-ingredients.module.css";

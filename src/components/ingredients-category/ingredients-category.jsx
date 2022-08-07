@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import Ingredient from "../ingredient/ingredient.jsx";
 import styles from "./ingredients-category.module.css";
 import PropTypes from "prop-types";
-import ingredientType from '../../utils/prop-types';
+import ingredientType from '../../utils/prop-types';  //исправить
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details.jsx";
 import { useSelector } from "react-redux";
 
 const IngredientCategory = ({tabRef, name, type}) => {
   const data = useSelector((store) => store.burgerIngredients.data);
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState(null);  //изменить
   const toggleModal = () => setActive(null);
 
   return (

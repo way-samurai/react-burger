@@ -43,7 +43,7 @@ export const constructorReducer = (state = initialState, action) => {
       };
     }
     case CONSTRUCTOR_MOVE_ITEM: {
-      const dragConstructor = [...state.items];
+      const dragConstructor = [...state.ingredients];
       dragConstructor.splice(
         action.data.dragIndex,
         0,

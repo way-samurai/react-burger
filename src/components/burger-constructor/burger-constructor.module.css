@@ -6,6 +6,13 @@
   max-width: 600px;
 }
 
+.staffingContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%
+}
+
 .emptyStaffingContainer {
   display: flex;
   justify-content: center;
@@ -27,7 +34,7 @@
 .stuffingList {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: calc(100vh - 516px);
   overflow-x: hidden;
   overflow-y: scroll;
@@ -48,7 +55,8 @@
 .stuffingItem {
   display: flex;
   align-items: center;
-}
+}  
+/* убрать если не пригодится */
 
 .stuffingItem:last-of-type {
   margin-bottom: 0;
