@@ -4,7 +4,6 @@ import ingredientsStyles from "./burger-ingredients.module.css";
 import IngredientsCategory from '../ingredients-category/ingredients-category';
 
 const BurgerIngredients = () => {
-  const { data } = [];
   const [current, setCurrent] = useState('bun');
   const bunRef = useRef();
   const sauceRef = useRef();
@@ -13,6 +12,7 @@ const BurgerIngredients = () => {
     setCurrent(evt);
     ref.current.scrollIntoView({ behavior: "smooth" });
   };
+
   
   return (
     <section className={`${ingredientsStyles.section} mr-10`}>
@@ -23,9 +23,9 @@ const BurgerIngredients = () => {
         <Tab value="main" active={current === "main"} onClick={(evt) => clickOnTab(evt, mainRef)}>Начинки</Tab>
       </div>
       <ul className={`${ingredientsStyles.list} mt-10 `}>
-        <IngredientsCategory data={data} type="bun" tabRef={bunRef} name="Булки" id="bun" />
-        <IngredientsCategory data={data} type="sauce" tabRef={sauceRef} name="Соусы" id="sauce" />
-        <IngredientsCategory data={data} type="main" tabRef={mainRef} name="Начинки" id="main" />
+        <IngredientsCategory type="bun" tabRef={bunRef} name="Булки" id="bun" />
+        <IngredientsCategory type="sauce" tabRef={sauceRef} name="Соусы" id="sauce" />
+        <IngredientsCategory type="main" tabRef={mainRef} name="Начинки" id="main" /> 
       </ul>
     </section>
   )

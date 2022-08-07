@@ -7,7 +7,7 @@ import {
 } from '../actions/constructor'
 
 const initialState = {
-  bun: null,
+  bun: null, 
   ingredients: [],
 };
 

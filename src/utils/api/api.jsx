@@ -15,8 +15,12 @@ export const checkResponse = (res) => {
 };
 
 export const getIngredients = () => {
-  return fetch(`${api.url}/ingredients`)
-    .then(checkResponse)
+  return fetch(`${api.url}/ingredients`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(checkResponse);
 };
 
 export const apiPostOrder = (orderData) => {

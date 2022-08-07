@@ -2,9 +2,10 @@ import React from 'react';
 import style from "./order-details.module.css";
 import orderAccepted from '../../images/order_accpeted.png';
 import PropTypes from "prop-types";
+import { useSelector } from 'react-redux';
 
-const OrderDetails = ({orderNumber}) => {
-
+const OrderDetails = () => {
+  const { orderNumber } = useSelector((store) => store.order.orderNumber);
 	return (
 		<div className={`${style.container} pl-25 pr-25`}>
 			<h3 className={`${style.title} text text_type_digits-large pt-15 pb-8`}>{orderNumber}</h3>

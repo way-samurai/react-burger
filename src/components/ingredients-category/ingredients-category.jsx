@@ -5,10 +5,13 @@ import PropTypes from "prop-types";
 import ingredientType from '../../utils/prop-types';
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details.jsx";
+import { useSelector } from "react-redux";
 
-const IngredientCategory = ({tabRef, name, data, type}) => {
+const IngredientCategory = ({tabRef, name, type}) => {
+  const data = useSelector((store) => store.burgerIngredients.data);
   const [active, setActive] = useState(null);
   const toggleModal = () => setActive(null);
+
   return (
     <section className="mb-10">
       {active && (
@@ -37,7 +40,7 @@ const IngredientCategory = ({tabRef, name, data, type}) => {
 }
 
 IngredientCategory.propTypes = {
-  data: PropTypes.arrayOf(ingredientType.isRequired).isRequired,
+  //data: PropTypes.arrayOf(ingredientType.isRequired).isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   tabRef: PropTypes.oneOfType([

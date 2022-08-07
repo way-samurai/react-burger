@@ -7,6 +7,8 @@ import {
 const initialState = {
   data: [],
   isLoading: false,
+  dataRequest: false,
+  modalActive: false,
   hasError: false,
 }
 
@@ -15,6 +17,8 @@ export const ingredientsReducer = (state = initialState, action) => {
     case GET_INGREDIENTS_REQUEST: {
       return {
         ...state,
+        dataRequest: false,
+        hasError: false,
         isLoading: true,
       };
     }
@@ -22,18 +26,16 @@ export const ingredientsReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        dataRequest: true,
         data: action.data,
-        burgerIngredients: {
-          ...state.burgerIngredients,
-          bun: action.bun,
-          fillings: action.fillings,
-        },
       };
     }
     case GET_INGREDIENTS_FAILED: {
       return {
         ...state,
+        isLoading: false,
         hasError: true,
+        dataRequest: false,
       };
     }
     default: {

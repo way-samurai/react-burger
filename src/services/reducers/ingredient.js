@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   data: null,
-  activeModal: false, //состояние для открытия модалок
+  modalActive: false, //состояние для открытия модалок
   dataIngredientDetails: null,
 }
 
@@ -14,14 +14,14 @@ export const ingredientReducer = (state = initialState, action) => {
     case SET_INGREDIENT_MODAL: {
       return {
         ...state,
-        activeModal: true, 
+        modalActive: true,
         dataIngredientDetails: action.ingredient,
       };
     }
     case RESET_INGREDIENT_MODAL: {
       return {
         ...state,
-        activeModal: false,
+        modalActive: false,
         dataIngredientDetails: null
       };
     }
