@@ -2,13 +2,13 @@ import {
   CREATE_ORDER_REQUEST,
   CREATE_ORDER_SUCCESS,
   CREATE_ORDER_FAILED,
-  RESET_ORDER
+  RESET_ORDER,
 } from '../actions/order-details.js';
 
 const initialState = {
-  orderNumber: null,
-  isLoading: false,
-  hasError: false,
+  number: null,
+  orderDetailsRequest: false,
+  orderDetailsFailed: false
 }
 
 export const orderReducer = (state = initialState, action) => {
@@ -16,32 +16,32 @@ export const orderReducer = (state = initialState, action) => {
     case CREATE_ORDER_REQUEST: {
       return {
         ...state,
-        isLoading: true,
-        hasError: false,
+        orderDetailsRequest: true,
+        orderDetailsFailed: false,
       }
     }
     case CREATE_ORDER_SUCCESS: {
       return {
         ...state,
-        orderNumber: action.orderNumber,
-        isLoading: false,
-        hasError: false,
+        number: action.number,
+        orderDetailsRequest: false,
+        orderDetailsFailed: false,
       }
     }
     case CREATE_ORDER_FAILED: {
       return {
         ...state,
-        orderNumber: null,
-        isLoading: false,
-        hasError: true,
+        number: null,
+        orderDetailsRequest: false,
+        orderDetailsFailed: true,
       }
     }
     case RESET_ORDER: {
       return {
         ...state,
-        orderNumber: null,
-        isLoading: false,
-        hasError: false,
+        number: null,
+        orderDetailsRequest: false,
+        orderDetailsFailed: false,
       }
     }
     default:

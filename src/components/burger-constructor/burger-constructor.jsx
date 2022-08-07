@@ -19,8 +19,8 @@ import ConstructorItems from "../burger-constructor-items/burger-constructor-ite
 
 
 const BurgerConstructor = () => {
-  const modalActive = useSelector((store) => store.burgerIngredients.modalActive);
   const { bun, ingredients } = useSelector((store) => store.burgerConstructor);
+  const [modalActive, setModalActive] = useState(false);
   const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
 
@@ -33,12 +33,12 @@ const BurgerConstructor = () => {
     () => ingredients.filter((item) => item.type !== "bun"),
     [ingredients]
   );
+  
+  const toggleModal = () => setModalActive(!modalActive);
 
-  const orderDetails = (itemsId) => {
-    dispatch(getOrderDetails(itemsId));
-  }
-
-  const toggleModal = () => !modalActive;
+  const orderDetails = (productsid) => {
+    dispatch(getOrderDetails(productsid));
+  };
 
   const [, dropTarget] = useDrop({
     accept: "ingredients",
@@ -135,9 +135,6 @@ const BurgerConstructor = () => {
             <Button
               type="primary"
               size="large"
-              onClick={() => {
-                orderDetails(itemsId);
-              }}
               disabled
             >
               Оформить заказ
@@ -148,6 +145,7 @@ const BurgerConstructor = () => {
               size="large"
               onClick={() => {
                 orderDetails(itemsId);
+                toggleModal();
               }}
             >
               Оформить заказ

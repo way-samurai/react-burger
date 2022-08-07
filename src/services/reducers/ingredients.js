@@ -8,7 +8,6 @@ const initialState = {
   data: [],
   isLoading: false,
   dataRequest: false,
-  modalActive: false,
   hasError: false,
 }
 

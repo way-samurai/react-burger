@@ -14,7 +14,7 @@ export function getOrderDetails(order) {
       .then((res) => {
         dispatch({
           type: CREATE_ORDER_SUCCESS,
-          orderNumber: res.order.orderNumber
+          number: res.order.number
         });
       })
       .catch(() => {
@@ -24,3 +24,4 @@ export function getOrderDetails(order) {
       })
   };
 }
+
