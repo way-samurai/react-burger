@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import Ingredient from "../ingredient/ingredient.jsx";
 import styles from "./ingredients-category.module.css";
 import PropTypes from "prop-types";
-import ingredientPropType from '../../utils/prop-types';
+import ingredientType from '../../utils/prop-types';
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details.jsx";
 
 const IngredientCategory = ({tabRef, name, data, type}) => {
   const [active, setActive] = useState(null);
   const toggleModal = () => setActive(null);
-
   return (
     <section className="mb-10">
       {active && (
@@ -38,7 +37,7 @@ const IngredientCategory = ({tabRef, name, data, type}) => {
 }
 
 IngredientCategory.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
+  data: PropTypes.arrayOf(ingredientType.isRequired).isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   tabRef: PropTypes.oneOfType([

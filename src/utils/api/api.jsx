@@ -1,23 +1,28 @@
 export const api = {
-  url: "https://norma.nomoreparties.space/api/ingredients",
+  url: "https://norma.nomoreparties.space/api",
   headers: {
     "Content-Type": "aplication.json",
   },
 };
 
-const checkResponse = (res) => {
+export const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
-  } 
+  }
   return Promise.reject(
     `Что-то пошло не так: Ошибка ${res.status} - ${res.statusText}`
   );
 };
 
 export const getIngredients = () => {
-  return fetch(`${api.url}`)
+  return fetch(`${api.url}/ingredients`)
     .then(checkResponse)
-    .catch((err) => {
-      console.log(err);
-    });
+};
+
+export const apiPostOrder = (orderData) => {
+  return fetch(`${api.url}/orders`, {
+    method: "POST",
+    body: JSON.stringify({ "ingredients": orderData }),
+    headers: { "Content-Type": "application/json" },
+  }).then(checkResponse);
 };
