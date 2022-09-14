@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding-top: 200px;
+  max-width: 480px;
+}
+
+.title {
+  margin: 0;
+}
+
+.form {
+  width: 100%;
+}
+
+.form div {
+	width: 100%;
+}
+
+.form svg {
+	margin-left: 190px;
+}
+
+.link {
+  padding-left: 8px;
+}
