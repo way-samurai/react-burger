@@ -1,4 +1,3 @@
-//Установка куки
 export function setCookie(name, value, props) {
   props = props || {};
   let exp = props.expires;
@@ -22,7 +21,6 @@ export function setCookie(name, value, props) {
   document.cookie = updatedCookie;
 }
 
-//Возвращение куки
 export function getCookie(name) {
   const matches = document.cookie.match(
     new RegExp(
@@ -34,7 +32,6 @@ export function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-//Удаление куки
 export function deleteCookie(name) {
   setCookie(name, null, { expires: -1 });
 }
