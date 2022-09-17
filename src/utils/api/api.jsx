@@ -1,4 +1,4 @@
-import { getCookie } from "../../utils/cookie";
+import { getCookie } from "../../utils/cookie/cookie";
 
 export const api = {
   url: "https://norma.nomoreparties.space/api",
@@ -37,7 +37,7 @@ export const apiPostOrder = (orderData) => {
 };
 
 //Запрос для авторизации пользователя
-export const authorization = (email, password) => {
+export const authorizationRequest = (email, password) => {
   return fetch(`${api.url}/auth/login`, {
     method: "POST",
     headers: api.headers,
@@ -49,7 +49,7 @@ export const authorization = (email, password) => {
 };
 
 //Запрос для регистрацию пользователя
-export const registerUser = (name, email, password) => {
+export const registrationUserRequest = (name, email, password) => {
   return fetch(`${api.url}/auth/register`, {
     method: "POST",
     headers: api.headers,
@@ -62,7 +62,7 @@ export const registerUser = (name, email, password) => {
 };
 
 //Запрос получения данных о пользователе
-export const userData = () => {
+export const getUserDataRequest = () => {
   return fetch(`${api.url}/auth/user`, {
     method: "GET",
     headers: {
@@ -73,7 +73,7 @@ export const userData = () => {
 };
 
 //Запрос обновления данных о пользователе
-export const updateUser = (name, email, password) => {
+export const updateUserDataRequest = (name, email, password) => {
   return fetch(`${api.url}/auth/user`, {
     method: "PATCH",
     headers: {
@@ -89,7 +89,7 @@ export const updateUser = (name, email, password) => {
 };
 
 //Запрос для выхода из системы
-export const logout = (refreshToken) => {
+export const logoutRequest = (refreshToken) => {
   return fetch(`${api.url}/auth/logout`, {
     method: "POST",
     headers: api.headers,
@@ -101,18 +101,20 @@ export const logout = (refreshToken) => {
 
 
 //Запрос обновления токена
-export const updateToken = (refreshToken) => {
+export const updateTokenRequest = () => {
   return fetch(`${api.url}/auth/token`, {
     method: "POST",
-    headers: api.headers,
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
-      token: refreshToken,
+      token: localStorage.getItem("refreshToken"),
     }),
   }).then(checkResponse);
 };
 
 //Запрос на восстановлениz пароля пользователя
-export const recoveryPassword = (email) => {
+export const recoveryPasswordRequest = (email) => {
   return fetch(`${api.url}/password-reset`, {
     method: "POST",
     headers: api.headers,
@@ -123,7 +125,7 @@ export const recoveryPassword = (email) => {
 };
 
 //Запрос сброса пароля пользователя 
-export const updatePassword = (token, password) => {
+export const resetPasswordRequest = (password, token) => {
   return fetch(`${api.url}/password-reset/reset`, {
     method: "POST",
     headers: api.headers,
