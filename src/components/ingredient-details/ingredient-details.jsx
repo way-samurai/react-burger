@@ -1,30 +1,44 @@
-import React from "react";
 import styles from "./ingredient-details.module.css";
 import IngredientsDetailsItem from "../ingredients-details-item/ingredients-details-item";
-import ingredientType from "../../utils/prop-types";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const IngredientDetails = (props) => {
+const IngredientDetails = () => {
+  const dataIngredients = useSelector((store) => store.burgerIngredients.data);
+  const { id } = useParams();
+  const ingredient = dataIngredients.find(
+    (ingredient) => ingredient._id === id
+  );
+
   return (
     <>
-      <h2 className={`${styles.title}  text text_type_main-large ml-10 pt-5`}>
-        Детали ингредиента
-      </h2>
       <div className={`${styles.container} pb-15 `}>
-        <img className={`${styles.pic}`} src={props.image_large} alt={props.name} />
+        <img
+          className={`${styles.pic}`}
+          src={ingredient?.image_large}
+          alt={ingredient?.name}
+        />
         <h3 className={`${styles.ingredient} text text_type_main-medium pt-3`}>
-          {props.name}
+          {ingredient?.name}
         </h3>
         <ul className={`${styles.list} pt-8`}>
-          <IngredientsDetailsItem value={props.calories} text="Калорийность, ккал" />
-          <IngredientsDetailsItem value={props.proteins} text="Белки, г" />
-          <IngredientsDetailsItem value={props.fat} text="Жиры, г" />
-          <IngredientsDetailsItem value={props.carbohydrates} text="Углеводы, г" />
+          <IngredientsDetailsItem
+            value={ingredient?.calories}
+            text="Калорийность, ккал"
+          />
+          <IngredientsDetailsItem
+            value={ingredient?.proteins}
+            text="Белки, г"
+          />
+          <IngredientsDetailsItem value={ingredient?.fat} text="Жиры, г" />
+          <IngredientsDetailsItem
+            value={ingredient?.carbohydrates}
+            text="Углеводы, г"
+          />
         </ul>
       </div>
     </>
   );
 };
-
-IngredientDetails.propTypes = ingredientType.isRequired;
 
 export default IngredientDetails;
