@@ -3,7 +3,7 @@
   width: 100%;
   min-height: 88px;
   margin: auto;
-  background-color: #1C1C21;
+  background-color: #1c1c21;
 }
 
 .headerContainer {
@@ -33,6 +33,10 @@
   color: inherit;
 }
 
+.item:hover {
+  opacity: 0.8;
+}
+
 .logo {
   display: flex;
   justify-content: center;
@@ -42,4 +46,10 @@
   display: flex;
   justify-content: end;
   text-decoration: none;
+  outline: none;
+  color: inherit;
+}
+
+.profile:hover {
+  opacity: 0.8;
 }
