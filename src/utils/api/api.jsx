@@ -133,7 +133,7 @@ export const fetchWithRefresh = async (url, options) => {
     return await checkResponse(res);
   } catch (err) {
     console.log(err.message) //delete
-    if (err.message === "invalid algorithm" || 'invalid token' || 'jwt expired') {
+    if (err.message === 'jwt expired') {
       const refreshToken = await updateTokenRequest();
       if (!refreshToken.success) {
         Promise.reject(refreshToken);
