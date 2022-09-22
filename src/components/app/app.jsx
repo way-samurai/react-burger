@@ -8,27 +8,39 @@ import { getBurgerIngredients } from "../../services/actions/ingredients";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
-import { ProtectedRoute } from "../protected-route/protected-route";
-import { ForgotPassword, Login, NotFound404, Profile, Register, ResetPassword } from '../../pages';
+import { ForgotPassword, Login, Register, ResetPassword, NotFound404, Profile } from '../../pages/index';
 import IngredientDetails from "../ingredient-details/ingredient-details";
+import { ProtectedRoute } from "../protected-route/protected-route";
+import Modal from "../modal/modal";
+import { checkUzerAuth } from "../../services/actions/auth";
+import { Preloader } from "../preloader/preloader";
 
 function App() {
+  const location = useLocation();
   const dispatch = useDispatch();
+  const history = useHistory();
+  const background = location.state?.background;
+
   const isLoading = useSelector((store) => store.burgerIngredients.isLoading);
+
   const hasError = useSelector((store) => store.burgerIngredients.hasError);
+
+  const handleCloseModal = () => {
+    history.goBack();
+  }
 
   useEffect(() => {
     dispatch(getBurgerIngredients());
+    dispatch(checkUzerAuth());
   }, [dispatch]);
 
   return (
     <div className={appStyle.app}>
       <AppHeader />
-      {/* <Switch location={background || location}> */}
-      <Switch>
-        <Route path="/" exact={true}>
+      <Switch location={background || location}>
+        <ProtectedRoute path="/" exact forNonAuthUsers={false}>
           <main className={appStyle.main}>
-            {isLoading && "Загрузка..."}
+            {isLoading && <Preloader />}
             {hasError && "Произошла ошибка"}
             {!isLoading && !hasError && (
               <DndProvider backend={HTML5Backend}>
@@ -37,35 +49,44 @@ function App() {
               </DndProvider>
             )}
           </main>
-        </Route>
-        <Route path="/login" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/login" exact forNonAuthUsers={true}>
           <Login />
-        </Route>
-        <Route path="/register" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/register" exact forNonAuthUsers={true}>
           <Register />
-        </Route>
-        <Route path="/forgot-password" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/forgot-password" exact forNonAuthUsers={true}>
           <ForgotPassword />
-        </Route>
-        <Route path="/reset-password" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/reset-password" exact forNonAuthUsers={true}>
           <ResetPassword />
+        </ProtectedRoute>
+        <Route path="/ingredients/:id">
+          <div className={appStyle.container}>
+            <h2 className={`${appStyle.title} text text_type_main-large mt-4`}>
+              Детали ингредиента
+            </h2>
+            <IngredientDetails />
+          </div>
         </Route>
-        <Route path="/ingredients/:id" exact={true}>
-          <IngredientDetails />
-        </Route>
-        <ProtectedRoute path="/profile">
+        <ProtectedRoute path="/profile" forNonAuthUsers={false}>
           <Profile />
         </ProtectedRoute>
-        <Route>
+        <Route path="*">
           <NotFound404 />
         </Route>
       </Switch>
+
+      {background && (
+        <Route path="/ingredients/:id">
+          <Modal onClose={handleCloseModal} title="Детали ингредиента">
+            <IngredientDetails />
+          </Modal>
+        </Route>
+      )}
     </div>
   );
 }
 
 export default App;
-
-
-
-//Нужно проверить верстку каждой страницы!

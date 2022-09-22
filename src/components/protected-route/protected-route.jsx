@@ -16,7 +16,16 @@ export const ProtectedRoute = ({ forNonAuthUsers = false, children, ...rest }) =
 
     return (
       <Route {...rest}>
-        <Redirect to={{ pathname: "/login", state: { from: location }}} />
+        <Redirect to={from} />
+      </Route>
+    );
+  }
+
+  if (!forNonAuthUsers && !user) {
+
+    return (
+      <Route {...rest}>
+        <Redirect to={{ pathname: "/login", state: { from: location } }} />
       </Route>
     );
   }

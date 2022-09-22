@@ -11,3 +11,16 @@
   margin: 0 auto;
   max-width: 1240px;
 }
+
+.container {
+  max-width: 520px;
+  margin: 208px auto 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  align-self: center;
+}
