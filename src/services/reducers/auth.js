@@ -186,6 +186,7 @@ export const authReducer = (state = initialState, action) => {
 
     case LOGIN_REQUEST: {
       return {
+        ...state,
         authorizationRequest: true,
         authorizationFaild: false,
         authorizationSuccess: false,
@@ -194,6 +195,7 @@ export const authReducer = (state = initialState, action) => {
 
     case LOGIN_FAILED: {
       return {
+        ...state,
         authorizationRequest: false,
         authorizationFaild: true,
         authorizationSuccess: false,
@@ -228,6 +230,7 @@ export const authReducer = (state = initialState, action) => {
     //Выход из системы
     case LOGOUT_REQUEST: {
       return {
+        ...state,
         logoutRequest: true,
         logoutFaild: false,
         logoutSuccess: false,
@@ -236,6 +239,7 @@ export const authReducer = (state = initialState, action) => {
 
     case LOGOUT_FAILED: {
       return {
+        ...state,
         logoutRequest: false,
         logoutFaild: true,
         logoutSuccess: false,
@@ -265,6 +269,7 @@ export const authReducer = (state = initialState, action) => {
     //Восстановление пароля
     case RECOVERY_PASSWORD_REQUEST: {
       return {
+        ...state,
         recoveryPasswordRequest: true,
         recoveryPasswordFaild: false,
         recoveryPasswordSuccess: false,
@@ -273,6 +278,7 @@ export const authReducer = (state = initialState, action) => {
 
     case RECOVERY_PASSWORD_FAILED: {
       return {
+        ...state,
         recoveryPasswordRequest: false,
         recoveryPasswordFaild: true,
         recoveryPasswordSuccess: false,
@@ -331,6 +337,7 @@ export const authReducer = (state = initialState, action) => {
     //Обновление токена
     case UPDATE_TOKEN_REQUEST: {
       return {
+        ...state,
         updateTokenRequest: true,
         updateTokenFaild: false,
         updateTokenSuccess: false,
@@ -339,6 +346,7 @@ export const authReducer = (state = initialState, action) => {
 
     case UPDATE_TOKEN_FAILED: {
       return {
+        ...state,
         updateTokenRequest: false,
         updateTokenFaild: true,
         updateTokenSuccess: false,
@@ -347,6 +355,7 @@ export const authReducer = (state = initialState, action) => {
 
     case UPDATE_TOKEN_SUCCESS: {
       return {
+        ...state,
         updateTokenRequest: false,
         updateTokenFaild: false,
         updateTokenSuccess: true,
