@@ -11,33 +11,28 @@ const IngredientDetails = () => {
   );
 
   return (
-    <>
-      <div className={`${styles.container} pb-15 `}>
-        <img
-          className={`${styles.pic}`}
-          src={ingredient?.image_large}
-          alt={ingredient?.name}
+    <div className={`${styles.container} pb-15 `}>
+      <img
+        className={`${styles.pic}`}
+        src={ingredient?.image_large}
+        alt={ingredient?.name}
+      />
+      <h3 className={`${styles.ingredient} text text_type_main-medium pt-3`}>
+        {ingredient?.name}
+      </h3>
+      <ul className={`${styles.list} pt-8`}>
+        <IngredientsDetailsItem
+          value={ingredient?.calories}
+          text="Калорийность, ккал"
         />
-        <h3 className={`${styles.ingredient} text text_type_main-medium pt-3`}>
-          {ingredient?.name}
-        </h3>
-        <ul className={`${styles.list} pt-8`}>
-          <IngredientsDetailsItem
-            value={ingredient?.calories}
-            text="Калорийность, ккал"
-          />
-          <IngredientsDetailsItem
-            value={ingredient?.proteins}
-            text="Белки, г"
-          />
-          <IngredientsDetailsItem value={ingredient?.fat} text="Жиры, г" />
-          <IngredientsDetailsItem
-            value={ingredient?.carbohydrates}
-            text="Углеводы, г"
-          />
-        </ul>
-      </div>
-    </>
+        <IngredientsDetailsItem value={ingredient?.proteins} text="Белки, г" />
+        <IngredientsDetailsItem value={ingredient?.fat} text="Жиры, г" />
+        <IngredientsDetailsItem
+          value={ingredient?.carbohydrates}
+          text="Углеводы, г"
+        />
+      </ul>
+    </div>
   );
 };
 
