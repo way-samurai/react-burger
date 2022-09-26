@@ -53,6 +53,7 @@ export const UPDATE_TOKEN_FAILED = "UPDATE_TOKEN_FAILED";
 
 //Проверка авторизован пользователь или нет
 export const AUTH_CHECKED = "AUTH_CHECKED";
+export const AUTH_CHECKED_FAILD = "AUTH_CHECKED_FAILD";
 
 //Получение данных о пользователе
 export function getUserData() {
@@ -252,13 +253,12 @@ export function updateToken() {
 export const checkUzerAuth = () => {
   return function (dispatch) {
     if (getCookie("token")) {
-      dispatch(getUserData())
       dispatch({
         type: AUTH_CHECKED,
       });
     } else {
       dispatch({
-        type: AUTH_CHECKED,
+        type: AUTH_CHECKED_FAILD,
       });
     }
   };

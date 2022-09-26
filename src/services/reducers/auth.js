@@ -23,6 +23,8 @@ import {
   UPDATE_TOKEN_REQUEST,
   UPDATE_TOKEN_SUCCESS,
   UPDATE_TOKEN_FAILED,
+  AUTH_CHECKED,
+  AUTH_CHECKED_FAILD,
 } from "../actions/auth";
 
 
@@ -74,6 +76,21 @@ const initialState = {
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case AUTH_CHECKED: {
+      return {
+        ...state,
+
+        isAuthSuccess: true,
+      }
+    }
+    case AUTH_CHECKED_FAILD: {
+      return {
+        ...state,
+
+        isAuthSuccess: false,
+      }
+    }
+    
     //Получение данных пользователя
     case GET_USER_REQUEST: {
       return {
@@ -90,6 +107,7 @@ export const authReducer = (state = initialState, action) => {
 
         getUserDataRequest: false,
         getUserDataFaild: true,
+        isAuthSuccess: false,
       }
     }
 
@@ -289,7 +307,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
 
-        form: { //ПРОВЕРИТЬ
+        form: { 
           ...state.form,
           email: '',
         },

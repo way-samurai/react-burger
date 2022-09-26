@@ -14,19 +14,19 @@ const IngredientDetails = () => {
     <div className={`${styles.container} pb-15 `}>
       <img
         className={`${styles.pic}`}
-        src={ingredient?.image_large}
-        alt={ingredient?.name}
+        src={ingredient.image_large}
+        alt={ingredient.name}
       />
       <h3 className={`${styles.ingredient} text text_type_main-medium pt-3`}>
-        {ingredient?.name}
+        {ingredient.name}
       </h3>
       <ul className={`${styles.list} pt-8`}>
         <IngredientsDetailsItem
-          value={ingredient?.calories}
+          value={ingredient.calories}
           text="Калорийность, ккал"
         />
-        <IngredientsDetailsItem value={ingredient?.proteins} text="Белки, г" />
-        <IngredientsDetailsItem value={ingredient?.fat} text="Жиры, г" />
+        <IngredientsDetailsItem value={ingredient.proteins} text="Белки, г" />
+        <IngredientsDetailsItem value={ingredient.fat} text="Жиры, г" />
         <IngredientsDetailsItem
           value={ingredient?.carbohydrates}
           text="Углеводы, г"

@@ -8,12 +8,20 @@ import { getBurgerIngredients } from "../../services/actions/ingredients";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
-import { ForgotPassword, Login, Register, ResetPassword, NotFound404, Profile } from '../../pages/index';
+import {
+  ForgotPassword,
+  Login,
+  Register,
+  ResetPassword,
+  NotFound404,
+  Profile,
+} from "../../pages/index";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import { ProtectedRoute } from "../protected-route/protected-route";
 import Modal from "../modal/modal";
-import { checkUzerAuth } from "../../services/actions/auth";
+import { checkUzerAuth, getUserData } from "../../services/actions/auth";
 import { Preloader } from "../preloader/preloader";
+import { getCookie } from "../../utils/cookie/cookie";
 
 function App() {
   const location = useLocation();
@@ -22,23 +30,31 @@ function App() {
   const background = location.state?.background;
 
   const isLoading = useSelector((store) => store.burgerIngredients.isLoading);
-
+  const dataRequest = useSelector((store) => store.burgerIngredients.dataRequest);
   const hasError = useSelector((store) => store.burgerIngredients.hasError);
 
   const handleCloseModal = () => {
     history.goBack();
-  }
+  };
 
   useEffect(() => {
     dispatch(getBurgerIngredients());
     dispatch(checkUzerAuth());
   }, [dispatch]);
+  
+
+  useEffect(() => {
+    if (getCookie("token")) {
+      dispatch(getUserData());
+    }
+  }, [dispatch]);
+  
 
   return (
     <div className={appStyle.app}>
       <AppHeader />
       <Switch location={background || location}>
-        <ProtectedRoute path="/" exact forNonAuthUsers={false}>
+        <Route path="/" exact forNonAuthUsers={false}>
           <main className={appStyle.main}>
             {isLoading && <Preloader />}
             {hasError && "Произошла ошибка"}
@@ -49,7 +65,7 @@ function App() {
               </DndProvider>
             )}
           </main>
-        </ProtectedRoute>
+        </Route>
         <ProtectedRoute path="/login" exact forNonAuthUsers={true}>
           <Login />
         </ProtectedRoute>
@@ -63,12 +79,18 @@ function App() {
           <ResetPassword />
         </ProtectedRoute>
         <Route path="/ingredients/:id">
-          <div className={appStyle.container}>
-            <h2 className={`${appStyle.title} text text_type_main-large mt-4`}>
-              Детали ингредиента
-            </h2>
-            <IngredientDetails />
-          </div>
+          {!dataRequest ? (
+            <Preloader />
+          ) : (
+            <div className={appStyle.container}>
+              <h2
+                className={`${appStyle.title} text text_type_main-large mt-4`}
+              >
+                Детали ингредиента
+              </h2>
+              <IngredientDetails />
+            </div>
+          )}
         </Route>
         <ProtectedRoute path="/profile" forNonAuthUsers={false}>
           <Profile />
@@ -81,7 +103,7 @@ function App() {
       {background && (
         <Route path="/ingredients/:id">
           <Modal onClose={handleCloseModal} title="Детали ингредиента">
-            <IngredientDetails />
+            {!dataRequest ? <Preloader /> : <IngredientDetails />}
           </Modal>
         </Route>
       )}

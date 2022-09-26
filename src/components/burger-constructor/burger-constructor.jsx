@@ -15,12 +15,15 @@ import {
 } from "../../services/actions/constructor";
 import { useDrop } from "react-dnd";
 import ConstructorItems from "../burger-constructor-items/burger-constructor-items";
+import { useHistory } from "react-router-dom";
 
 const BurgerConstructor = () => {
+  const isAuthSuccess = useSelector((store) => store.user.isAuthSuccess);
   const { bun, ingredients } = useSelector((store) => store.burgerConstructor);
   const [modalActive, setModalActive] = useState(false);
   const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const itemsId = useMemo(
     () => ingredients.map((item) => item._id),
@@ -31,10 +34,19 @@ const BurgerConstructor = () => {
     () => ingredients.filter((item) => item.type !== "bun"),
     [ingredients]
   );
-  
-  const toggleModal = () => setModalActive(!modalActive);
 
-  const orderDetails = (productsid) => {
+  const openModal = () => {
+    if (!isAuthSuccess) {
+      history.push("/login");
+    }
+    setModalActive(true);
+  }
+
+  const closeModal = () => {
+    setModalActive(false);
+  }
+
+  const showOrderDetails = (productsid) => {
     dispatch(getOrderDetails(productsid));
   };
 
@@ -66,7 +78,7 @@ const BurgerConstructor = () => {
   return (
     <section className={`${styles.section} pt-25`}>
       {modalActive && (
-        <Modal title="" onClose={toggleModal}>
+        <Modal title="" onClose={closeModal}>
           <OrderDetails />
         </Modal>
       )}
@@ -129,12 +141,8 @@ const BurgerConstructor = () => {
             </p>
             <CurrencyIcon type="primary" />
           </div>
-          {(ingredients.length === 0 || bun === null) ? (
-            <Button
-              type="primary"
-              size="large"
-              disabled
-            >
+          {ingredients.length === 0 || bun === null ? (
+            <Button type="primary" size="large" disabled>
               Оформить заказ
             </Button>
           ) : (
@@ -142,8 +150,8 @@ const BurgerConstructor = () => {
               type="primary"
               size="large"
               onClick={() => {
-                orderDetails(itemsId);
-                toggleModal();
+                showOrderDetails(itemsId);
+                openModal();
               }}
             >
               Оформить заказ
