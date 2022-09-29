@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import PropTypes from "prop-types";
 import {
   ConstructorElement,
   DragIcon,
@@ -70,6 +71,7 @@ const ConstructorItems = ({ index, item }) => {
 };
 
 ConstructorItems.propTypes = {
+  index: PropTypes.number.isRequired,
 	item: ingredientType.isRequired
 }
 

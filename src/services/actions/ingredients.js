@@ -10,6 +10,7 @@ export function getBurgerIngredients() {
     dispatch({
       type: GET_INGREDIENTS_REQUEST
     });
+    
     getIngredients()
       .then((res) => {
         dispatch({

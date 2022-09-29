@@ -5,9 +5,10 @@ import App from './components/app/app';
 import reportWebVitals from './reportWebVitals';
 import { legacy_createStore as createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from './services/reducers/rootReducer'; 
+import rootReducer from './services/reducers/rootReducer';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { BrowserRouter as Router } from "react-router-dom";
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -16,11 +17,11 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
+  <Router>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
+  </Router>
 );
 
 reportWebVitals();
