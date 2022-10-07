@@ -10,7 +10,7 @@ import {
   WS_FEED_CONNECTION_CLOSED,
   WS_FEED_GET_MESSAGE,
   WS_FEED_SEND_MESSAGE,
-} from "./action-types/ws_feed-action-types";
+} from "./actions/actions-ws-types/ws_feed-action-types";
 
 import {
   WS_ORDERS_CONNECTION_START,
@@ -19,24 +19,28 @@ import {
   WS_ORDERS_CONNECTION_CLOSED,
   WS_ORDERS_GET_MESSAGE,
   WS_ORDERS_SEND_MESSAGE,
-} from './action-types/ws_orders-action-types';
+} from './actions/actions-ws-types/ws_orders-action-types';
+
+const wsUrl = 'wss://norma.nomoreparties.space/orders/all';
+const wsOrdersUrl = 'wss://norma.nomoreparties.space/orders';
 
 const feedWsActions = {
   wsInit: WS_FEED_CONNECTION_START,
+  wsSendMessage: WS_FEED_SEND_MESSAGE, 
   onOpen: WS_FEED_CONNECTION_SUCCESS,
-  onError: WS_FEED_CONNECTION_ERROR,
   onClose: WS_FEED_CONNECTION_CLOSED,
+  onError: WS_FEED_CONNECTION_ERROR,
   onMessage: WS_FEED_GET_MESSAGE,
-  sendMessage: WS_FEED_SEND_MESSAGE,
 }
 
-const ordersWsActions = {
+const userOrdersWsActions = {
   wsInit: WS_ORDERS_CONNECTION_START,
+  wsSendMessage: WS_ORDERS_SEND_MESSAGE, 
   onOpen: WS_ORDERS_CONNECTION_SUCCESS,
-  onError: WS_ORDERS_CONNECTION_ERROR,
   onClose: WS_ORDERS_CONNECTION_CLOSED,
+  onError: WS_ORDERS_CONNECTION_ERROR,
   onMessage: WS_ORDERS_GET_MESSAGE,
-  sendMessage: WS_ORDERS_SEND_MESSAGE,
+  
 }
 
 const store = createStore(
@@ -44,8 +48,8 @@ const store = createStore(
   composeWithDevTools(
     applyMiddleware(
       thunk,
-      socketMiddleware(ordersWsActions),
-      socketMiddleware(feedWsActions),
+      socketMiddleware(wsUrl, feedWsActions, false),
+      socketMiddleware(wsOrdersUrl, userOrdersWsActions, true),
     )
   )
 );

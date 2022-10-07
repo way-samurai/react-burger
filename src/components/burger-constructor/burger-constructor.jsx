@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrderDetails } from "../../services/actions/order-details.js";
 import {
   CONSTRUCTOR_ADD_BUN,
-  CONSTRUCTOR_ADD_ITEM
+  CONSTRUCTOR_ADD_ITEM,
 } from "../../services/actions/constructor";
 import { useDrop } from "react-dnd";
 import ConstructorItems from "../burger-constructor-items/burger-constructor-items";
@@ -24,6 +24,7 @@ const BurgerConstructor = () => {
   const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
   const history = useHistory();
+  const number = useSelector((store) => store.order.number);
 
   const itemsId = useMemo(
     () => ingredients.map((item) => item._id),

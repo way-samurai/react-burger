@@ -3,7 +3,7 @@ import {
   WS_FEED_CONNECTION_ERROR,
   WS_FEED_CONNECTION_CLOSED,
   WS_FEED_GET_MESSAGE,
-} from "../action-types/ws_feed-action-types";
+} from "../actions/actions-ws-types/ws_feed-action-types";
 
 const initialState = {
   wsConnected: false,
@@ -39,9 +39,9 @@ export const feedReducer = (state = initialState, action) => {
     case WS_FEED_GET_MESSAGE:
       return {
         ...state,
-        orders: action.payload.data.orders,
-        total: action.payload.data.total,
-        totalToday: action.payload.data.totalToday,
+        orders: action.payload.orders,
+        total: action.payload.total,
+        totalToday: action.payload.totalToday,
         error: null,
       };
 

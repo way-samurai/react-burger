@@ -30,7 +30,10 @@ export const getIngredients = async () => {
 export const apiPostOrder = async (orderData) => {
   return await request(`${api.url}/orders`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getCookie("token"),
+    },
     body: JSON.stringify({ ingredients: orderData }),
   });
 };
@@ -136,7 +139,6 @@ export const fetchWithRefresh = async (url, options) => {
     const res = await fetch(url, options);
     return await checkResponse(res);
   } catch (err) {
-    console.log(err)
     if (err.message === 'jwt expired') {
       const refreshToken = await updateTokenRequest();
       const accessToken = refreshToken.accessToken.split("Bearer ")[1]; 

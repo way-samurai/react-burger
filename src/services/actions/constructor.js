@@ -4,3 +4,8 @@ export const CONSTRUCTOR_ADD_ITEM = 'ADD_ITEM';
 export const CONSTRUCTOR_RESET_ITEM = 'RESET_ITEM';
 export const CONSTRUCTOR_MOVE_ITEM = 'MOVE_ITEM';
 
+export function resetConstructor() {
+  return {
+    type: CONSTRUCTOR_RESET_ITEM,
+  };
+}

@@ -24,3 +24,9 @@ export function getOrderDetails(order) {
       })
   };
 }
+
+export function resetOrderNumber() {
+  return {
+    type: RESET_ORDER,
+  };
+}

@@ -13,6 +13,7 @@
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "@ya.praktikum/react-developer-burger-ui-components": "^1.13.1",
+    "date-fns": "^2.29.3",
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
@@ -24,6 +25,7 @@
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "typescript": "^4.7.4",
+    "uniqid": "^5.4.0",
     "using": "^1.0.0-alpha-1",
     "web-vitals": "^2.1.4"
   },

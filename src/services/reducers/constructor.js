@@ -39,7 +39,7 @@ export const constructorReducer = (state = initialState, action) => {
       return {
         ...state,
         ingredients: [],
-        bun: [],
+        bun: null,
       };
     }
     case CONSTRUCTOR_MOVE_ITEM: {

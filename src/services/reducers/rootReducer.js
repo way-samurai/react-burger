@@ -6,7 +6,7 @@ import { feedReducer } from "./feed";
 import { ordersReducer } from "./orders";
 import { orderReducer } from "./order-details";
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   order: orderReducer, //Объект созданного заказа
   burgerIngredients: ingredientsReducer, //список всех полученных ингредиентов
   burgerConstructor: constructorReducer, //список всех ингредиентов в текущем конструкторе бургера
@@ -15,4 +15,3 @@ const rootReducer = combineReducers({
   wsOrders: ordersReducer, //история заказов
 });
 
-export default rootReducer

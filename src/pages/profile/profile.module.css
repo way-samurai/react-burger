@@ -1,13 +1,16 @@
 .container {
 	display: flex;
 	flex-direction: row;
-	max-width: 860px;
-	margin: auto;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
 }
 
 .nav {
 	display: flex;
 	flex-direction: column;
+  width: 100%;
+  max-width: 320px;
 }
 
 .buttons {
@@ -24,8 +27,6 @@
 	padding: 0;
 	width: 320px;
 }
-
-
 
 .item {
 	padding: 17px 0;
@@ -51,6 +52,7 @@
 
 .form {
 	width: 100%;
+  max-width: 480px;
 }
 
 .form div {
