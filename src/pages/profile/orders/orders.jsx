@@ -18,14 +18,14 @@ export const UserOrders = () => {
     };
   }, [dispatch]);
 
-  if (!orders.length) {
+  if (orders.length === 0) {
     return <Preloader />;
   }
 
   return (
     <div className={styles.orderList}>
       {orders &&
-        orders.map((order, index) => {
+        orders.map((order) => {
           return (
             <Link
               to={{
@@ -35,7 +35,7 @@ export const UserOrders = () => {
               className={`${styles.link} mb-2`}
               key={order._id}
             >
-              <OrderCard order={order} key={index} statusVue={true} />
+              <OrderCard order={order} key={order._id} statusVue={true} />
             </Link>
           );
         }).reverse()}

@@ -24,7 +24,7 @@ const BurgerConstructor = () => {
   const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
   const history = useHistory();
-  const number = useSelector((store) => store.order.number);
+
 
   const itemsId = useMemo(
     () => ingredients.map((item) => item._id),
@@ -57,16 +57,16 @@ const BurgerConstructor = () => {
       if (item.ingredient.type === "bun") {
         dispatch({
           type: CONSTRUCTOR_ADD_BUN,
-          data: item.ingredient,
-        });
-      } else {
-        dispatch({
-          type: CONSTRUCTOR_ADD_ITEM,
-          data: { ...item.ingredient, id: Date.now() },
+          data: { ...item.ingredient },
         });
       }
+      dispatch({
+        type: CONSTRUCTOR_ADD_ITEM,
+        data: { ...item.ingredient, id: Date.now() },
+      });
     },
   });
+
 
   useEffect(() => {
     const totalPrice = filling.reduce(
@@ -100,7 +100,7 @@ const BurgerConstructor = () => {
 
             <ul className={styles.stuffingList}>
               {ingredients.length > 0 ? (
-                ingredients.map((item, index) => {
+                filling.map((item, index) => {
                   return (
                     <ConstructorItems index={index} key={item.id} item={item} />
                   );

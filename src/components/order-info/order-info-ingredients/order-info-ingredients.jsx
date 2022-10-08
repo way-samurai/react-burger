@@ -30,9 +30,9 @@ export const OrdersInfoIngredients = ({ details }) => {
   return (
     <ul className={styles.scroller}>
       {orderIngredient &&
-        [...new Set(orderIngredient)].map((item, index) => {
+        [...new Set(orderIngredient)].map((item) => {
           return (
-            <li className={`${styles.item} pr-6`} key={index}>
+            <li className={`${styles.item} pr-6`} key={item._id}>
               {item && (
                 <>
                   <div className={styles.info}>

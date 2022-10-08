@@ -40,8 +40,8 @@ export const socketMiddleware = (wsUrl, wsActions, isAuth ) => {
 				};
 
 				if (type === wsSendMessage) {
-					const orders = { ...payload };
-					socket.send(JSON.stringify(orders));
+					const data = { ...payload };
+					socket.send(JSON.stringify(data));
 				}
 			}
 

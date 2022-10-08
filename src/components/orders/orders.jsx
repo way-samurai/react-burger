@@ -18,7 +18,7 @@ export const Orders = () => {
     <section className={`${styles.orderList}`}>
       {orders &&
         orders
-          .map((order, index) => {
+          .map((order) => {
             return (
               <Link
                 to={{
@@ -28,7 +28,7 @@ export const Orders = () => {
                 className={`${styles.link}`}
                 key={order._id}
               >
-                <OrderCard order={order} key={index} statusVue={false} />
+                <OrderCard order={order} key={order._id} statusVue={false} />
               </Link>
             );
           })}
