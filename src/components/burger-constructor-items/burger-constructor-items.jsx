@@ -25,6 +25,16 @@ const ConstructorItems = ({ index, item }) => {
     });
   };
 
+  const [{ opacity }, drag] = useDrag({
+    type: "item",
+    item: { id, index },
+    collect: (monitor) => {
+      return {
+        opacity: monitor.isDragging() ? 0.5 : 1,
+      };
+    },
+  });
+
   const [, drop] = useDrop({
     accept: "item",
     hover(item) {
@@ -38,16 +48,6 @@ const ConstructorItems = ({ index, item }) => {
         data: { dragIndex, hoverIndex },
       });
       item.index = hoverIndex;
-    },
-  });
-
-  const [{ opacity }, drag] = useDrag({
-    type: "item",
-    item: { id, index },
-    collect: (monitor) => {
-      return {
-        opacity: monitor.isDragging() ? 0.5 : 1,
-      };
     },
   });
 

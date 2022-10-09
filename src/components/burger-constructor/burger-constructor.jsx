@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, } from "react";
+import { useCallback, useEffect, useMemo, useState, } from "react";
 import {
   ConstructorElement,
   CurrencyIcon,
@@ -25,11 +25,15 @@ const BurgerConstructor = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const allItemsId = useCallback(() => {
+    let itemsId = [];
+    let fillingId = ingredients.map((item) => item._id);
+    let bunId = [bun._id];
 
-  const itemsId = useMemo(
-    () => ingredients.map((item) => item._id),
-    [ingredients]
-  )
+    itemsId = fillingId.concat(bunId);
+
+    return itemsId
+  }, [ingredients, bun]);
 
   const filling = useMemo(
     () => ingredients.filter((item) => item.type !== "bun"),
@@ -50,20 +54,22 @@ const BurgerConstructor = () => {
   const showOrderDetails = (productsid) => {
     dispatch(getOrderDetails(productsid));
   };
-
+  
   const [, dropTarget] = useDrop({
     accept: "ingredients",
     drop(item) {
       if (item.ingredient.type === "bun") {
         dispatch({
           type: CONSTRUCTOR_ADD_BUN,
-          data: { ...item.ingredient },
+          data: item.ingredient,
+        });
+      } else {
+        dispatch({
+          type: CONSTRUCTOR_ADD_ITEM,
+          data: { ...item.ingredient, id: Date.now() },
         });
       }
-      dispatch({
-        type: CONSTRUCTOR_ADD_ITEM,
-        data: { ...item.ingredient, id: Date.now() },
-      });
+      
     },
   });
 
@@ -151,7 +157,7 @@ const BurgerConstructor = () => {
               type="primary"
               size="large"
               onClick={() => {
-                showOrderDetails(itemsId);
+                showOrderDetails(allItemsId());
                 openModal();
               }}
             >
