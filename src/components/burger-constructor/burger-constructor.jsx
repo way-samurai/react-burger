@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, } from "react";
+import { useCallback, useEffect, useMemo, useState, } from "react";
 import {
   ConstructorElement,
   CurrencyIcon,
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrderDetails } from "../../services/actions/order-details.js";
 import {
   CONSTRUCTOR_ADD_BUN,
-  CONSTRUCTOR_ADD_ITEM
+  CONSTRUCTOR_ADD_ITEM,
 } from "../../services/actions/constructor";
 import { useDrop } from "react-dnd";
 import ConstructorItems from "../burger-constructor-items/burger-constructor-items";
@@ -25,10 +25,15 @@ const BurgerConstructor = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const itemsId = useMemo(
-    () => ingredients.map((item) => item._id),
-    [ingredients]
-  )
+  const allItemsId = useCallback(() => {
+    let itemsId = [];
+    let fillingId = ingredients.map((item) => item._id);
+    let bunId = [bun._id];
+
+    itemsId = fillingId.concat(bunId);
+
+    return itemsId
+  }, [ingredients, bun]);
 
   const filling = useMemo(
     () => ingredients.filter((item) => item.type !== "bun"),
@@ -49,7 +54,7 @@ const BurgerConstructor = () => {
   const showOrderDetails = (productsid) => {
     dispatch(getOrderDetails(productsid));
   };
-
+  
   const [, dropTarget] = useDrop({
     accept: "ingredients",
     drop(item) {
@@ -64,8 +69,10 @@ const BurgerConstructor = () => {
           data: { ...item.ingredient, id: Date.now() },
         });
       }
+      
     },
   });
+
 
   useEffect(() => {
     const totalPrice = filling.reduce(
@@ -99,7 +106,7 @@ const BurgerConstructor = () => {
 
             <ul className={styles.stuffingList}>
               {ingredients.length > 0 ? (
-                ingredients.map((item, index) => {
+                filling.map((item, index) => {
                   return (
                     <ConstructorItems index={index} key={item.id} item={item} />
                   );
@@ -150,7 +157,7 @@ const BurgerConstructor = () => {
               type="primary"
               size="large"
               onClick={() => {
-                showOrderDetails(itemsId);
+                showOrderDetails(allItemsId());
                 openModal();
               }}
             >

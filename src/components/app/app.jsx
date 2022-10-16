@@ -7,7 +7,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { getBurgerIngredients } from "../../services/actions/ingredients";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
-import { Switch, Route, useLocation, useHistory } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  useLocation,
+  useHistory,
+  useRouteMatch,
+} from "react-router-dom";
 import {
   ForgotPassword,
   Login,
@@ -22,6 +28,8 @@ import Modal from "../modal/modal";
 import { checkUzerAuth, getUserData } from "../../services/actions/auth";
 import { Preloader } from "../preloader/preloader";
 import { getCookie } from "../../utils/cookie/cookie";
+import { Feed } from "../../pages/feed/feed";
+import { OrderInfo } from "../order-info/order-info";
 
 function App() {
   const location = useLocation();
@@ -30,8 +38,13 @@ function App() {
   const background = location.state?.background;
 
   const isLoading = useSelector((store) => store.burgerIngredients.isLoading);
-  const dataRequest = useSelector((store) => store.burgerIngredients.dataRequest);
+  const dataRequest = useSelector(
+    (store) => store.burgerIngredients.dataRequest
+  );
   const hasError = useSelector((store) => store.burgerIngredients.hasError);
+
+  const idOrderFeedInfo = useRouteMatch(["/feed/:id"])?.params?.id;
+  const idOrderProfileInfo = useRouteMatch(["/profile/orders/:id"])?.params?.id;
 
   const handleCloseModal = () => {
     history.goBack();
@@ -41,20 +54,18 @@ function App() {
     dispatch(getBurgerIngredients());
     dispatch(checkUzerAuth());
   }, [dispatch]);
-  
 
   useEffect(() => {
     if (getCookie("token")) {
       dispatch(getUserData());
     }
   }, [dispatch]);
-  
 
   return (
     <div className={appStyle.app}>
       <AppHeader />
       <Switch location={background || location}>
-        <Route path="/" exact forNonAuthUsers={false}>
+        <Route path="/" exact >
           <main className={appStyle.main}>
             {isLoading && <Preloader />}
             {hasError && "Произошла ошибка"}
@@ -65,6 +76,9 @@ function App() {
               </DndProvider>
             )}
           </main>
+        </Route>
+        <Route path="/feed" exact>
+          <Feed />
         </Route>
         <ProtectedRoute path="/login" exact forNonAuthUsers={true}>
           <Login />
@@ -92,7 +106,20 @@ function App() {
             </div>
           )}
         </Route>
-        <ProtectedRoute path="/profile" forNonAuthUsers={false}>
+        <Route path="/feed/:id" exact>
+          {!dataRequest ? <Preloader /> : <OrderInfo />}
+        </Route>
+        <ProtectedRoute
+          path="/profile/orders/:id"
+          exact
+          forNonAuthUsers={false}
+        >
+          {!dataRequest ? <Preloader /> : <OrderInfo />}
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile" exact forNonAuthUsers={false}>
+          <Profile />
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile/orders" exact forNonAuthUsers={false}>
           <Profile />
         </ProtectedRoute>
         <Route path="*">
@@ -101,11 +128,31 @@ function App() {
       </Switch>
 
       {background && (
-        <Route path="/ingredients/:id">
+        <Route path="/ingredients/:id" exact>
           <Modal onClose={handleCloseModal} title="Детали ингредиента">
             {!dataRequest ? <Preloader /> : <IngredientDetails />}
           </Modal>
         </Route>
+      )}
+
+      {background && idOrderFeedInfo && (
+        <Route path="/feed/:id" exact>
+          <Modal onClose={handleCloseModal}>
+            <OrderInfo />
+          </Modal>
+        </Route>
+      )}
+
+      {background && idOrderProfileInfo && (
+        <ProtectedRoute
+          path="/profile/orders/:id"
+          exact
+          forNonAuthUsers={false}
+        >
+          <Modal onClose={handleCloseModal}>
+            <OrderInfo />
+          </Modal>
+        </ProtectedRoute>
       )}
     </div>
   );

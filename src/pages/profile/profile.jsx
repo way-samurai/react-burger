@@ -7,7 +7,7 @@ import { NavLink, Route, Switch } from "react-router-dom";
 import { logout, updateUserData } from "../../services/actions/auth";
 import profileStyle from "./profile.module.css";
 import { useForm } from "../../hooks/use-form";
-import { NotFound404 } from "../not-found-404/not-found-404";
+import { UserOrders } from "./orders/orders";
 
 export const Profile = () => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ export const Profile = () => {
   }
 
   return (
-    <div className={`${profileStyle.container} pt-30`}>
+    <div className={`${profileStyle.container}`}>
       <nav className={`${profileStyle.nav} pr-15`}>
         <ul className={`${profileStyle.items}`}>
           <li className={`${profileStyle.item}`}>
@@ -81,8 +81,7 @@ export const Profile = () => {
       </nav>
       <Switch>
         <Route path="/profile/orders" exact>
-          <NotFound404 /> {/*временная заглушка */}
-          {/* <Orders /> */}
+          <UserOrders />
         </Route>
         <Route path="/profile" exact>
           <form className={profileStyle.form} onSubmit={submit}>

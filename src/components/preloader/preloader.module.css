@@ -3,10 +3,17 @@
 }
 
 .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.blocks {
+  display: block;
   width: 80px;
   height: 100px;
-  margin: 0 auto;
-  margin-top: calc(80vh / 2 - 50px);
 }
 
 .block {
