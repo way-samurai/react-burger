@@ -25,3 +25,4 @@ export const formatDate = (date: Date): string => {
     (createdAt.getTimezoneOffset() * -1) / 60
   }`;
 };
+
