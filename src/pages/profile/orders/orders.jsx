@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { OrderCard } from "../../../components/orders/order-card/order-card";
 import { Preloader } from "../../../components/preloader/preloader";
-import { wsOrdersConnectionClosed, wsOrdersConnectionOpen } from "../../../services/actions/actions-ws-types/ws_orders-action-types";
+import { wsOrdersConnectionClosed, wsOrdersConnectionOpen } from "../../../services/actions/actions-ws/ws_orders-action-ws";
 import styles from "./orders.module.css";
 
 export const UserOrders = () => {

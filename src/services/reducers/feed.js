@@ -3,7 +3,7 @@ import {
   WS_FEED_CONNECTION_ERROR,
   WS_FEED_CONNECTION_CLOSED,
   WS_FEED_GET_MESSAGE,
-} from "../actions/actions-ws-types/ws_feed-action-types";
+} from "../actions/actions-ws/ws_feed-action-ws";
 
 const initialState = {
   wsConnected: false,

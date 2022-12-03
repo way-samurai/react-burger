@@ -10,7 +10,7 @@ import {
   WS_FEED_CONNECTION_CLOSED,
   WS_FEED_GET_MESSAGE,
   WS_FEED_SEND_MESSAGE,
-} from "./actions/actions-ws-types/ws_feed-action-types";
+} from "./actions/actions-ws/ws_feed-action-ws";
 
 import {
   WS_ORDERS_CONNECTION_START,
@@ -19,7 +19,7 @@ import {
   WS_ORDERS_CONNECTION_CLOSED,
   WS_ORDERS_GET_MESSAGE,
   WS_ORDERS_SEND_MESSAGE,
-} from './actions/actions-ws-types/ws_orders-action-types';
+} from './actions/actions-ws/ws_orders-action-ws';
 
 const wsUrl = 'wss://norma.nomoreparties.space/orders/all';
 const wsOrdersUrl = 'wss://norma.nomoreparties.space/orders';

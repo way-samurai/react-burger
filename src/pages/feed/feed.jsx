@@ -4,7 +4,7 @@ import { OrdersStatistics } from "../../components/orders-statistics/orders-stat
 
 import { Orders } from "../../components/orders/orders";
 import { Preloader } from "../../components/preloader/preloader";
-import { wsFeedConnectionClosed, wsFeedConnectionOpen } from "../../services/actions/actions-ws-types/ws_feed-action-types";
+import { wsFeedConnectionClosed, wsFeedConnectionOpen } from "../../services/actions/actions-ws/ws_feed-action-ws";
 
 import styles from "./feed.module.css";
 

@@ -3,7 +3,7 @@ import {
   WS_ORDERS_CONNECTION_ERROR,
   WS_ORDERS_CONNECTION_CLOSED,
   WS_ORDERS_GET_MESSAGE,
-} from "../actions/actions-ws-types/ws_orders-action-types";
+} from "../actions/actions-ws/ws_orders-action-ws";
 
 const initialState = {
   wsConnected: false,

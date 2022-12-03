@@ -9,6 +9,7 @@ import {
   resetPasswordRequest
 } from "../../utils/api/api";
 import { deleteCookie, getCookie, setCookie } from '../../utils/cookie/cookie';
+import { TUser } from "../types/data";
 
 import {
   GET_USER_REQUEST,
@@ -47,6 +48,152 @@ import {
   AUTH_CHECKED,
   AUTH_CHECKED_FAILD
 } from "./constants/auth"
+
+//Получение данных пользователя
+export interface IAuthGetUserRequest {
+  readonly type: typeof GET_USER_REQUEST;
+}
+
+export interface IAuthGetUserSuccess {
+  readonly type: typeof GET_USER_SUCCESS;
+  readonly user: TUser;
+}
+
+export interface IAuthGetUserFailed {
+  readonly type: typeof GET_USER_FAILED;
+}
+
+//Обновление данных пользователя
+export interface IAuthUpdateUserRequest {
+  readonly type: typeof UPDATE_USER_REQUEST;
+}
+
+export interface IAuthUpdateUserSuccess {
+  readonly type: typeof UPDATE_USER_SUCCESS;
+  readonly user: TUser;
+}
+
+export interface IAuthUpdateUserFailed {
+  readonly type: typeof UPDATE_USER_FAILED;
+}
+//Регистрация пользователя
+export interface IAuthRegistrationFormRequest {
+  readonly type: typeof REGISTRATION_FORM_REQUEST;
+}
+
+export interface IAuthRegistrationFormSuccess {
+  readonly type: typeof REGISTRATION_FORM_SUCCESS;
+  readonly user: TUser;
+}
+
+export interface IAuthRegistrationFormFailed {
+  readonly type: typeof REGISTRATION_FORM_FAILED;
+}
+
+//Авторизация
+export interface IAuthLoginRequest {
+  readonly type: typeof LOGIN_REQUEST;
+}
+
+export interface IAuthLoginSuccess {
+  readonly type: typeof LOGIN_SUCCESS;
+  readonly user: TUser;
+}
+
+export interface IAuthLoginFailed {
+  readonly type: typeof LOGIN_FAILED;
+}
+
+//Выход из системы
+export interface IAuthLogoutRequest {
+  readonly type: typeof LOGOUT_REQUEST;
+}
+
+export interface IAuthLogoutSuccess {
+  readonly type: typeof LOGOUT_SUCCESS;
+}
+
+export interface IAuthLogoutFailed {
+  readonly type: typeof LOGOUT_FAILED;
+}
+
+//Восстановление пароля
+export interface IAuthRecoveryPasswordRequest {
+  readonly type: typeof RECOVERY_PASSWORD_REQUEST;
+}
+
+export interface IAuthRecoveryPasswordSuccess {
+  readonly type: typeof RECOVERY_PASSWORD_SUCCESS;
+  readonly message: string
+}
+
+export interface IAuthRecoveryPasswordFailed {
+  readonly type: typeof RECOVERY_PASSWORD_FAILED;
+}
+
+//Сброс пароля пользователя
+
+export interface IAuthResetPasswordRequest {
+  readonly type: typeof RESET_PASSWORD_REQUEST;
+}
+
+export interface IAuthResetPasswordSuccess {
+  readonly type: typeof RESET_PASSWORD_SUCCESS;
+}
+
+export interface IAuthResetPasswordFailed {
+  readonly type: typeof RESET_PASSWORD_FAILED;
+}
+
+//Обновление токена
+export interface IAuthUpdateTokenReset {
+  readonly type: typeof UPDATE_TOKEN_REQUEST;
+}
+
+export interface IAuthUpdateTokenSuccess {
+  readonly type: typeof UPDATE_TOKEN_SUCCESS;
+}
+
+export interface IAuthUpdateTokenFailed {
+  readonly type: typeof UPDATE_TOKEN_FAILED;
+}
+
+//Проверка авторизован пользователь или нет
+export interface IAuthChecked {
+  readonly type: typeof AUTH_CHECKED;
+}
+
+export interface IAuthCheckedFailed {
+  readonly type: typeof AUTH_CHECKED_FAILD;
+}
+
+export type TAuthActions = 
+  | IAuthGetUserRequest
+  | IAuthGetUserSuccess
+  | IAuthGetUserFailed
+  | IAuthUpdateUserRequest
+  | IAuthUpdateUserSuccess
+  | IAuthUpdateUserFailed
+  | IAuthRegistrationFormRequest
+  | IAuthRegistrationFormSuccess
+  | IAuthRegistrationFormFailed
+  | IAuthLoginRequest
+  | IAuthLoginSuccess
+  | IAuthLoginFailed
+  | IAuthLogoutRequest
+  | IAuthLogoutSuccess
+  | IAuthLogoutFailed
+  | IAuthRecoveryPasswordRequest
+  | IAuthRecoveryPasswordSuccess
+  | IAuthRecoveryPasswordFailed
+  | IAuthResetPasswordRequest
+  | IAuthResetPasswordSuccess
+  | IAuthResetPasswordFailed
+  | IAuthUpdateTokenReset
+  | IAuthUpdateTokenSuccess
+  | IAuthUpdateTokenFailed
+  | IAuthChecked
+  | IAuthCheckedFailed
 
 //Получение данных о пользователе
 export function getUserData() {
@@ -175,7 +322,7 @@ export function logout() {
 }
 
 //Восстановление пароля
-export function recoveryPassword(email) {
+export function recoveryPassword(email: string) {
   return function (dispatch) {
     dispatch({
       type: RECOVERY_PASSWORD_REQUEST,
@@ -195,14 +342,8 @@ export function recoveryPassword(email) {
   };
 }
 
-export const setResetFormValue = (field, value) => ({
-  type: RESET_FORM_SET_VALUE,
-  field,
-  value,
-});
-
 //Сброс пароля пользователя
-export function resetPassword(password, token) {
+export function resetPassword(password: string, token: string) {
   return function (dispatch) {
     dispatch({
       type: RESET_PASSWORD_REQUEST,
@@ -224,7 +365,9 @@ export function resetPassword(password, token) {
 //Обновление токена
 export function updateToken() {
   return function (dispatch) {
-    dispatch({ type: UPDATE_TOKEN_REQUEST });
+    dispatch({ 
+      type: UPDATE_TOKEN_REQUEST 
+    });
     updateTokenRequest()
       .then((res) => {
         const authToken = res.accessToken.split("Bearer ")[1];

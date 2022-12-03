@@ -36,3 +36,21 @@ export type TFeed = {
 	updatedAt: string;
 	_id: string;
 }
+
+export type TOrder = {
+	createdAt: string;
+	ingredients: Array<TIngredient>;
+	name: string;
+	number: number;
+	owner: TUser;
+	price: number;
+	status: string;
+	updatedAt: string;
+	_id: string;
+}
+
+// export type TOrderDetailsResponse = {
+// 	name: string
+// 	order: TOrder;
+// 	success: boolean;
+// }

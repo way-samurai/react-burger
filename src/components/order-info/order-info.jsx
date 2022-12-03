@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams, useRouteMatch } from "react-router-dom";
 import { formatDate } from "../../utils/formate-date";
 import styles from "./order-info.module.css";
-import { wsFeedConnectionClosed, wsFeedConnectionOpen } from "../../services/actions/actions-ws-types/ws_feed-action-types";
-import { wsOrdersConnectionClosed, wsOrdersConnectionOpen } from "../../services/actions/actions-ws-types/ws_orders-action-types";
+import { wsFeedConnectionClosed, wsFeedConnectionOpen } from "../../services/actions/actions-ws/ws_feed-action-ws";
+import { wsOrdersConnectionClosed, wsOrdersConnectionOpen } from "../../services/actions/actions-ws/ws_orders-action-ws";
 import { OrdersInfoIngredients } from "./order-info-ingredients/order-info-ingredients";
 
 export const OrderInfo = () => {
