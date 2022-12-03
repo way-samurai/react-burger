@@ -20,9 +20,7 @@ export const checkResponse = <T>(res: Response): Promise<T> => {
 export const getIngredients = async () => {
   return await request(`${api.url}/ingredients`, {
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: api.headers,
   });
 };
 
@@ -114,27 +112,36 @@ export const updateTokenRequest = async () => {
 };
 
 //Запрос на восстановлениz пароля пользователя
-export const recoveryPasswordRequest = async (email: {email: string}) => {
+export const recoveryPasswordRequest = async (email: string) => {
   return await request(`${api.url}/password-reset`, {
     method: "POST",
     headers: api.headers,
     body: JSON.stringify({
-      email: email.email,
+      email: email,
     }),
   });
 };
 
 //Запрос сброса пароля пользователя
-export const resetPasswordRequest = async (password: string, token: any) => {
+export const resetPasswordRequest = async (password: string, token: string ) => {
   return await request(`${api.url}/password-reset/reset`, {
     method: "POST",
     headers: api.headers,
-    body: JSON.stringify(password, token),
+    body: JSON.stringify({password, token}),
   });
 };
 
+type TFetchOptions = {
+  method: string;
+  headers: {
+    "Content-Type": string;
+    "Authorization": string;
+  };
+  body?: string
+}
+
 //Обновление токена (обертка)
-export const fetchWithRefresh = async (url: string, options: RequestInit & any) => {
+export const fetchWithRefresh = async (url: string, options: TFetchOptions ) => {
   try {
     const res = await fetch(url, options);
     return await checkResponse(res);
