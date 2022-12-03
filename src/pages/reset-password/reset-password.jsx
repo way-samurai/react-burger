@@ -21,7 +21,7 @@ export const ResetPassword = () => {
 
   function formSubmit(e) {
     e.preventDefault();
-    dispatch(resetPassword({ password: values.password, token: values.code }));
+    dispatch(resetPassword({ password: values.password }, { token: values.code }));
   }
 
   if (!recoveryPasswordSuccess) {
