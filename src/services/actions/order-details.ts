@@ -1,9 +1,5 @@
 import { apiPostOrder } from "../../utils/api/api";
-
-export const CREATE_ORDER_REQUEST: 'CREATE_ORDER_REQUEST' = 'CREATE_ORDER_REQUEST';
-export const CREATE_ORDER_SUCCESS: 'CREATE_ORDER_SUCCESS' = 'CREATE_ORDER_SUCCESS';
-export const CREATE_ORDER_FAILED: 'CREATE_ORDER_FAILED' = 'CREATE_ORDER_FAILED';
-export const RESET_ORDER: 'RESET_ORDER' = 'RESET_ORDER';
+import { CREATE_ORDER_FAILED, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, RESET_ORDER } from "./constants/order-details";
 
 export function getOrderDetails(order) {
   return function (dispatch) {
