@@ -30,7 +30,7 @@ const BurgerConstructor = () => {
     let fillingId = ingredients.map((item) => item._id);
     let bunId = [bun._id];
 
-    itemsId = fillingId.concat(bunId);
+    itemsId = bunId.concat(fillingId);
 
     return itemsId
   }, [ingredients, bun]);
