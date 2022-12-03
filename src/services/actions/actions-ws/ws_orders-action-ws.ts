@@ -26,12 +26,12 @@ export interface IWsOrdersConnectionClosed {
 
 export interface IWsOrdersGetMessage {
   readonly type: typeof WS_ORDERS_GET_MESSAGE;
-  readonly payload: TOrder;
+  readonly payload: Array<TOrder>;
 }
 
 export interface IWsOrdersSendMessage {
   readonly type: typeof WS_ORDERS_SEND_MESSAGE;
-  readonly payload: TOrder;
+  readonly payload: Array<TOrder>;
 }
 
 export type TWsOrdersActions = 
@@ -42,38 +42,38 @@ export type TWsOrdersActions =
   | IWsOrdersGetMessage
   | IWsOrdersSendMessage
 
-export const wsOrdersConnectionSuccess = () => {
+export const wsOrdersConnectionSuccess = (): IWsOrdersSuccess => {
 	return {
 		type: WS_ORDERS_CONNECTION_SUCCESS
 	};
 };
 
-export const wsOrdersConnectionOpen = () => {
+export const wsOrdersConnectionOpen = (): IWsOrdersConnectionStart => {
 	return {
 		type: WS_ORDERS_CONNECTION_START
 	}
 }
 
-export const wsOrdersConnectionError = () => {
+export const wsOrdersConnectionError = (): IWsOrdersConnectionError => {
 	return {
 		type: WS_ORDERS_CONNECTION_ERROR
 	};
 };
 
-export const wsOrdersConnectionClosed = () => {
+export const wsOrdersConnectionClosed = (): IWsOrdersConnectionClosed => {
 	return {
 		type: WS_ORDERS_CONNECTION_CLOSED
 	};
 };
 
-export const wsOrdersGetMessage = (order: Array<TOrder>) => {
+export const wsOrdersGetMessage = (order: Array<TOrder>): IWsOrdersGetMessage => {
 	return {
 		type: WS_ORDERS_GET_MESSAGE,
 		payload: order
 	};
 };
 
-export const wsOrdersSendMessage = (order: Array<TOrder>) => {
+export const wsOrdersSendMessage = (order: Array<TOrder>): IWsOrdersSendMessage => {
 	return {
 		type: WS_ORDERS_SEND_MESSAGE,
 		payload: order

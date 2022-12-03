@@ -28,7 +28,7 @@ export type TConstructorActions =
   | IConstructorResetItem
 
 
-export function resetConstructor() {
+export function resetConstructor(): IConstructorResetItem {
   return {
     type: CONSTRUCTOR_RESET_ITEM,
   };

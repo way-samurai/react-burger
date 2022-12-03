@@ -50,7 +50,7 @@ export function getOrderDetails(order: Array<string>) {
   };
 }
 
-export function resetOrderNumber() {
+export function resetOrderNumber(): IResetOrder {
   return {
     type: RESET_ORDER,
   };

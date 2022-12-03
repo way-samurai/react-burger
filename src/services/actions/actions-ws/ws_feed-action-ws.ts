@@ -42,38 +42,38 @@ export type TWsFeedActions =
   | IWsFeedGetMessage
   | IWsFeedSendMessage
 
-export const wsFeedConnectionSuccess = () => {
+export const wsFeedConnectionSuccess = (): IWsFeedConnectionSuccess => {
 	return {
 		type: WS_FEED_CONNECTION_SUCCESS
 	};
 };
 
-export const wsFeedConnectionOpen = () => {
+export const wsFeedConnectionOpen = (): IWsFeedConnectionStart => {
 	return {
 		type: WS_FEED_CONNECTION_START
 	}
 }
 
-export const wsFeedConnectionError = () => {
+export const wsFeedConnectionError = (): IWsFeedConnectionError => {
 	return {
 		type: WS_FEED_CONNECTION_ERROR
 	};
 };
 
-export const wsFeedConnectionClosed = () => {
+export const wsFeedConnectionClosed = (): IWsFeedConnectionClosed => {
 	return {
 		type: WS_FEED_CONNECTION_CLOSED
 	};
 };
 
-export const wsFeedGetMessage = (order: TOrder) => {
+export const wsFeedGetMessage = (order: TOrder): IWsFeedGetMessage => {
 	return {
 		type: WS_FEED_GET_MESSAGE,
 		payload: order
 	};
 };
 
-export const wsFeedSendMessage = (order: TOrder) => {
+export const wsFeedSendMessage = (order: TOrder): IWsFeedSendMessage => {
 	return {
 		type: WS_FEED_SEND_MESSAGE,
 		payload: order
