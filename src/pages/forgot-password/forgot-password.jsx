@@ -17,7 +17,7 @@ export const ForgotPassword = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-    dispatch(recoveryPassword({ email: values.email }));
+    dispatch(recoveryPassword(values.email));
   }
 
   return (
