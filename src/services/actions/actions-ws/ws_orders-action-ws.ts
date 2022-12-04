@@ -1,4 +1,4 @@
-import { TOrder } from "../../types/data";
+import { TFeedResponse, TOrder } from "../../types/data";
 import { 
   WS_ORDERS_CONNECTION_CLOSED, 
   WS_ORDERS_CONNECTION_ERROR, 
@@ -28,12 +28,12 @@ export interface IWsOrdersConnectionClosed {
 
 export interface IWsOrdersGetMessage {
   readonly type: typeof WS_ORDERS_GET_MESSAGE;
-  readonly payload: Array<TOrder>; //Проверить
+  readonly payload: TFeedResponse;
 }
 
 export interface IWsOrdersSendMessage {
   readonly type: typeof WS_ORDERS_SEND_MESSAGE;
-  readonly payload: Array<TOrder>;
+  readonly payload: TOrder;
 }
 
 export type TWsOrdersActions = 
@@ -70,14 +70,14 @@ export const wsOrdersConnectionClosed = (event: CloseEvent): IWsOrdersConnection
 	};
 };
 
-export const wsOrdersGetMessage = (order: Array<TOrder>): IWsOrdersGetMessage => {
+export const wsOrdersGetMessage = (orders: TFeedResponse): IWsOrdersGetMessage => {
 	return {
 		type: WS_ORDERS_GET_MESSAGE,
-		payload: order
+		payload: orders
 	};
 };
 
-export const wsOrdersSendMessage = (order: Array<TOrder>): IWsOrdersSendMessage => {
+export const wsOrdersSendMessage = (order: TOrder): IWsOrdersSendMessage => {
 	return {
 		type: WS_ORDERS_SEND_MESSAGE,
 		payload: order
