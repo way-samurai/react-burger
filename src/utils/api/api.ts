@@ -12,7 +12,7 @@ function request(url: string, options: RequestInit) {
 }
 
 //Проверка статуса запроса
-export const checkResponse = <T>(res: Response): Promise<T> => {
+export const checkResponse = (res: Response) => {
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
@@ -48,7 +48,7 @@ export const authorizationRequest = async (email: string, password: string) => {
   });
 };
 
-//Запрос для регистрациb пользователя
+//Запрос для регистрации пользователя
 export const registrationUserRequest = async (name: string, email: string, password: string) => {
   return await request(`${api.url}/auth/register`, {
     method: "POST",
