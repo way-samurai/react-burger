@@ -36,7 +36,6 @@ import {
   RECOVERY_PASSWORD_SUCCESS,
   RECOVERY_PASSWORD_FAILED,
 
-  RESET_FORM_SET_VALUE,
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_FAILED,
@@ -217,7 +216,7 @@ export function getUserData() {
 }
 
 //Обновление данных пользователя
-export function updateUserData(email, name, password) {
+export function updateUserData(email: string, name: string, password: string) {
   return function (dispatch) {
     dispatch({
       type: UPDATE_USER_REQUEST,
@@ -238,7 +237,7 @@ export function updateUserData(email, name, password) {
 }
 
 //Регистрация пользователя
-export function registrationUser(name, email, password) {
+export function registrationUser(name: string, email: string, password: string) {
   return function (dispatch) {
     dispatch({
       type: REGISTRATION_FORM_REQUEST,
@@ -266,7 +265,7 @@ export function registrationUser(name, email, password) {
 }
 
 //Авторизация
-export function authorization(email, password) {
+export function authorization(email: string, password: string) {
   return function (dispatch) {
     dispatch({
       type: LOGIN_REQUEST,

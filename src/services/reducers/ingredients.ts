@@ -6,7 +6,7 @@ import {
 import { TIngredientsActions } from '../actions/ingredients';
 import { TIngredient } from '../types/data';
 
-type TIngredientsState = {
+export type TIngredientsState = {
   data: Array<TIngredient>,
   isLoading: boolean,
   dataRequest: boolean,
