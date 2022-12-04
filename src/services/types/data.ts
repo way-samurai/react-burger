@@ -51,9 +51,16 @@ export type TOrder = {
 
 export type TWSActions = {
 	wsInit: string;
+	wsSendMessage: string;
 	onOpen: string;
 	onClose: string;
 	onError: string;
 	onMessage: string;
-	wsSendMessage: string;
+}
+
+export type TFeedResponse = {
+	success: boolean;
+	total: number;
+	totalToday: number;
+	orders: Array<TFeed>;
 }

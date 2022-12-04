@@ -7,8 +7,8 @@ import {
 import { useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
 import {
-  CONSTRUCTOR_DELETE_ITEM,
   CONSTRUCTOR_MOVE_ITEM,
+  deleteConstructorItem,
 } from "../../services/actions/constructor";
 import styles from "./burger-constructor-items.module.css";
 import ingredientType from "../../utils/prop-types";
@@ -19,10 +19,9 @@ const ConstructorItems = ({ index, item }) => {
   const dispatch = useDispatch();
 
   const onDelete = (id) => {
-    dispatch({
-      type: CONSTRUCTOR_DELETE_ITEM,
-      id: id,
-    });
+    dispatch(
+      deleteConstructorItem(id)
+    );
   };
 
   const [{ opacity }, drag] = useDrag({

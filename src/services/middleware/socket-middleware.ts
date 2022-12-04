@@ -29,7 +29,7 @@ export const socketMiddleware = (wsUrl: string, wsActions: TWSActions, isAuth: b
 					dispatch({ type: onError, payload: event });
 				};
 
-				socket.onmessage = event => {
+				socket.onmessage = (event: MessageEvent) => {
 					const { data } = event;
 					const parsedData = JSON.parse(data);
 					const { success, ...restParsedData } = parsedData;
@@ -37,7 +37,7 @@ export const socketMiddleware = (wsUrl: string, wsActions: TWSActions, isAuth: b
 					dispatch({ type: onMessage, payload: restParsedData });
 				};
 
-				socket.onclose = event => {
+				socket.onclose = (event: CloseEvent) => {
 					dispatch({ type: onClose, payload: event });
 				};
 

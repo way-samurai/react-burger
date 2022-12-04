@@ -18,15 +18,17 @@ export interface IWsOrdersConnectionStart {
 
 export interface IWsOrdersConnectionError {
   readonly type: typeof WS_ORDERS_CONNECTION_ERROR;
+  readonly payload: MessageEvent;
 }
 
 export interface IWsOrdersConnectionClosed {
   readonly type: typeof WS_ORDERS_CONNECTION_CLOSED;
+  readonly payload: CloseEvent;
 }
 
 export interface IWsOrdersGetMessage {
   readonly type: typeof WS_ORDERS_GET_MESSAGE;
-  readonly payload: Array<TOrder>;
+  readonly payload: Array<TOrder>; //Проверить
 }
 
 export interface IWsOrdersSendMessage {
@@ -54,15 +56,17 @@ export const wsOrdersConnectionOpen = (): IWsOrdersConnectionStart => {
 	}
 }
 
-export const wsOrdersConnectionError = (): IWsOrdersConnectionError => {
+export const wsOrdersConnectionError = (message: MessageEvent): IWsOrdersConnectionError => {
 	return {
-		type: WS_ORDERS_CONNECTION_ERROR
+		type: WS_ORDERS_CONNECTION_ERROR,
+    payload: message
 	};
 };
 
-export const wsOrdersConnectionClosed = (): IWsOrdersConnectionClosed => {
+export const wsOrdersConnectionClosed = (event: CloseEvent): IWsOrdersConnectionClosed => {
 	return {
-		type: WS_ORDERS_CONNECTION_CLOSED
+		type: WS_ORDERS_CONNECTION_CLOSED,
+    payload: event
 	};
 };
 

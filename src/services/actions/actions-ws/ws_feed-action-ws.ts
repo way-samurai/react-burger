@@ -1,4 +1,4 @@
-import { TOrder } from "../../types/data";
+import { TFeedResponse, TOrder } from "../../types/data";
 import { 
   WS_FEED_CONNECTION_CLOSED, 
   WS_FEED_CONNECTION_ERROR, 
@@ -18,15 +18,17 @@ export interface IWsFeedConnectionStart {
 
 export interface IWsFeedConnectionError {
   readonly type: typeof WS_FEED_CONNECTION_ERROR;
+  readonly payload: MessageEvent;
 }
 
 export interface IWsFeedConnectionClosed {
   readonly type: typeof WS_FEED_CONNECTION_CLOSED;
+  readonly payload: CloseEvent;
 }
 
 export interface IWsFeedGetMessage {
   readonly type: typeof WS_FEED_GET_MESSAGE;
-  readonly payload: TOrder;
+  readonly payload: TFeedResponse;
 }
 
 export interface IWsFeedSendMessage {
@@ -50,26 +52,28 @@ export const wsFeedConnectionSuccess = (): IWsFeedConnectionSuccess => {
 
 export const wsFeedConnectionOpen = (): IWsFeedConnectionStart => {
 	return {
-		type: WS_FEED_CONNECTION_START
+		type: WS_FEED_CONNECTION_START,
 	}
 }
 
-export const wsFeedConnectionError = (): IWsFeedConnectionError => {
+export const wsFeedConnectionError = (message: MessageEvent): IWsFeedConnectionError => {
 	return {
-		type: WS_FEED_CONNECTION_ERROR
+		type: WS_FEED_CONNECTION_ERROR,
+    payload: message
 	};
 };
 
-export const wsFeedConnectionClosed = (): IWsFeedConnectionClosed => {
+export const wsFeedConnectionClosed = (event: CloseEvent): IWsFeedConnectionClosed => {
 	return {
-		type: WS_FEED_CONNECTION_CLOSED
+		type: WS_FEED_CONNECTION_CLOSED,
+    payload: event
 	};
 };
 
-export const wsFeedGetMessage = (order: TOrder): IWsFeedGetMessage => {
+export const wsFeedGetMessage = (orders: TFeedResponse): IWsFeedGetMessage => {
 	return {
 		type: WS_FEED_GET_MESSAGE,
-		payload: order
+		payload: orders
 	};
 };
 
