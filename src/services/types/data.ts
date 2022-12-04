@@ -23,9 +23,9 @@ export type TIngredient = {
 	count?: number;
 }
 
-// export type TConstructorIngredient = TIngredient & {
-// 	id: string;
-// }
+export type TConstructorIngredient = TIngredient & {
+	id: string;
+}
 
 export type TFeed = {
 	createdAt: string;
@@ -49,8 +49,11 @@ export type TOrder = {
 	_id: string;
 }
 
-// export type TOrderDetailsResponse = {
-// 	name: string
-// 	order: TOrder;
-// 	success: boolean;
-// }
+export type TWSActions = {
+	wsInit: string;
+	onOpen: string;
+	onClose: string;
+	onError: string;
+	onMessage: string;
+	wsSendMessage: string;
+}
