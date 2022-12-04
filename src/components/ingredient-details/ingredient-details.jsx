@@ -1,7 +1,7 @@
 import styles from "./ingredient-details.module.css";
 import IngredientsDetailsItem from "../ingredients-details-item/ingredients-details-item";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector } from "../../services/types/index";
 
 const IngredientDetails = () => {
   const dataIngredients = useSelector((store) => store.burgerIngredients.data);

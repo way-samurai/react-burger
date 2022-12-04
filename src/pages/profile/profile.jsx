@@ -2,7 +2,7 @@ import {
   Button,
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../../services/types/index";
 import { NavLink, Route, Switch } from "react-router-dom";
 import { logout, updateUserData } from "../../services/actions/auth";
 import profileStyle from "./profile.module.css";

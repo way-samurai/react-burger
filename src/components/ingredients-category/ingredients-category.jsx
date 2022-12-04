@@ -1,7 +1,7 @@
 import Ingredient from "../ingredient/ingredient.jsx";
 import styles from "./ingredients-category.module.css";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useSelector } from "../../services/types/index";
 
 const IngredientCategory = ({tabRef, name, type}) => {
   const data = useSelector((store) => store.burgerIngredients.data);

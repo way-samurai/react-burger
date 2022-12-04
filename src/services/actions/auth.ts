@@ -9,6 +9,7 @@ import {
   resetPasswordRequest
 } from "../../utils/api/api";
 import { deleteCookie, getCookie, setCookie } from '../../utils/cookie/cookie';
+import { AppDispatch } from "../types";
 import { TUser } from "../types/data";
 
 import {
@@ -196,7 +197,7 @@ export type TAuthActions =
 
 //Получение данных о пользователе
 export function getUserData() {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: GET_USER_REQUEST,
     });
@@ -217,7 +218,7 @@ export function getUserData() {
 
 //Обновление данных пользователя
 export function updateUserData(email: string, name: string, password: string) {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: UPDATE_USER_REQUEST,
     });
@@ -238,7 +239,7 @@ export function updateUserData(email: string, name: string, password: string) {
 
 //Регистрация пользователя
 export function registrationUser(name: string, email: string, password: string) {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: REGISTRATION_FORM_REQUEST,
     });
@@ -266,7 +267,7 @@ export function registrationUser(name: string, email: string, password: string) 
 
 //Авторизация
 export function authorization(email: string, password: string) {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: LOGIN_REQUEST,
     });
@@ -294,7 +295,7 @@ export function authorization(email: string, password: string) {
 
 //Выход из системы
 export function logout() {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: LOGOUT_REQUEST,
     });
@@ -322,7 +323,7 @@ export function logout() {
 
 //Восстановление пароля
 export function recoveryPassword(email: string) {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: RECOVERY_PASSWORD_REQUEST,
     });
@@ -343,7 +344,7 @@ export function recoveryPassword(email: string) {
 
 //Сброс пароля пользователя
 export function resetPassword(password: string, token: string) {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: RESET_PASSWORD_REQUEST,
     });
@@ -363,7 +364,7 @@ export function resetPassword(password: string, token: string) {
 
 //Обновление токена
 export function updateToken() {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({ 
       type: UPDATE_TOKEN_REQUEST 
     });
@@ -386,7 +387,7 @@ export function updateToken() {
 }
 
 export const checkUzerAuth = () => {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     if (getCookie("token")) {
       dispatch({
         type: AUTH_CHECKED,

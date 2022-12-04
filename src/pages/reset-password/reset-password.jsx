@@ -3,7 +3,7 @@ import {
   Input,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../services/types/index";
 import { Link, Redirect, useLocation } from "react-router-dom";
 import { useForm } from "../../hooks/use-form";
 import { resetPassword } from "../../services/actions/auth";

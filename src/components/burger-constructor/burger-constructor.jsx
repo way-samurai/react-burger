@@ -7,12 +7,12 @@ import {
 import styles from "./burger-constructor.module.css";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
-import { useDispatch, useSelector } from "react-redux";
-import { getOrderDetails } from "../../services/actions/order-details.js";
+import { useSelector, useDispatch } from "../../services/types/index";
+import { getOrderDetails } from "../../services/actions/order-details";
 import {
   CONSTRUCTOR_ADD_BUN,
   CONSTRUCTOR_ADD_ITEM,
-} from "../../services/actions/constructor";
+} from "../../services/actions/constants/constructor";
 import { useDrop } from "react-dnd";
 import ConstructorItems from "../burger-constructor-items/burger-constructor-items";
 import { useHistory } from "react-router-dom";

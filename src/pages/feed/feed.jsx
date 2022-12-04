@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../../services/types/index";
 import { OrdersStatistics } from "../../components/orders-statistics/orders-statistics";
 
 import { Orders } from "../../components/orders/orders";

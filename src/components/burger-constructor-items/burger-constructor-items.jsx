@@ -4,14 +4,14 @@ import {
   ConstructorElement,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../services/types/index";
 import { useDrag, useDrop } from "react-dnd";
 import {
-  CONSTRUCTOR_MOVE_ITEM,
   deleteConstructorItem,
 } from "../../services/actions/constructor";
 import styles from "./burger-constructor-items.module.css";
 import ingredientType from "../../utils/prop-types";
+import { CONSTRUCTOR_MOVE_ITEM } from "../../services/actions/constants/constructor";
 
 const ConstructorItems = ({ index, item }) => {
 	const { image, id, price, name } = item;

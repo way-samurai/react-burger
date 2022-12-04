@@ -1,9 +1,7 @@
 import { useMemo } from "react";
 import propTypes from "prop-types";
-import { useSelector } from "react-redux";
-
+import { useSelector } from "../../services/types/index";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-
 import styles from "./order-info-ingredients.module.css";
 import { OrderImg } from "../../orders/order-card/orders-img/order-img";
 

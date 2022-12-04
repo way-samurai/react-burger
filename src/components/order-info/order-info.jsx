@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../../services/types/index";
 import { useLocation, useParams, useRouteMatch } from "react-router-dom";
 import { formatDate } from "../../utils/formate-date";
 import styles from "./order-info.module.css";

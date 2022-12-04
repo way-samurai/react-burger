@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import style from "./order-details.module.css";
 import orderAccepted from "../../images/order_accpeted.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../../services/types/index";
 import { Route } from "react-router-dom";
 import { Preloader } from "../preloader/preloader";
 import { resetOrderNumber } from "../../services/actions/order-details";

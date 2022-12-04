@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector } from "../../services/types/index";
 import { Redirect, Route, useLocation } from "react-router-dom";
 import { Preloader } from "../preloader/preloader";
 import PropTypes from "prop-types";
@@ -8,7 +8,6 @@ export const ProtectedRoute = ({
   children,
   ...rest
 }) => {
-
   const user = useSelector((store) => store.user.user);
   const location = useLocation();
 

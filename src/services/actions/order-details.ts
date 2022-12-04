@@ -1,4 +1,5 @@
 import { apiPostOrder } from "../../utils/api/api";
+import { AppDispatch } from "../types";
 
 import { 
   CREATE_ORDER_FAILED, 
@@ -31,7 +32,7 @@ export type TOrderDetailsActions =
   | IResetOrder
 
 export function getOrderDetails(order: Array<string>) {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: CREATE_ORDER_REQUEST
     });

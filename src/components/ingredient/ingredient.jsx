@@ -3,7 +3,7 @@ import styles from "./ingredient.module.css";
 import ingredientType from "../../utils/prop-types";
 import { useDrag } from "react-dnd";
 import { useMemo, } from "react";
-import { useSelector } from "react-redux";
+import { useSelector } from "../../services/types/index";
 import { Link, useLocation, } from "react-router-dom";
 
 const Ingredient = (ingredient) => {

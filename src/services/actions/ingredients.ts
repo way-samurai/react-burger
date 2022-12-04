@@ -1,4 +1,5 @@
 import { getIngredients } from '../../utils/api/api'
+import { AppDispatch } from '../types';
 import { TIngredient } from '../types/data';
 import { 
   GET_INGREDIENTS_FAILED, 
@@ -25,7 +26,7 @@ export type TIngredientsActions =
   | IIngredientsSuccess
 
 export function getBurgerIngredients() {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: GET_INGREDIENTS_REQUEST
     });
