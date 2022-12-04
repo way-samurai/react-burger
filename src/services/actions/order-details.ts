@@ -1,5 +1,5 @@
 import { apiPostOrder } from "../../utils/api/api";
-import { TOrder } from "../types/data";
+
 import { 
   CREATE_ORDER_FAILED, 
   CREATE_ORDER_REQUEST, 
