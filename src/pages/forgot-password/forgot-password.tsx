@@ -1,3 +1,4 @@
+import { FC, FormEvent } from 'react'
 import {
   Button,
   Input,
@@ -9,13 +10,13 @@ import { useForm } from "../../hooks/use-form";
 import { recoveryPassword } from "../../services/actions/auth";
 import styles from "./forgot-password.module.css";
 
-export const ForgotPassword = () => {
+export const ForgotPassword: FC = () => {
   const { values, handleValues } = useForm({ email: "" });
   const dispatch = useDispatch();
 
   const { recoveryPasswordSuccess } = useSelector((store) => store.user);
 
-  function onSubmit(e) {
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(recoveryPassword(values.email));
   }
@@ -38,7 +39,7 @@ export const ForgotPassword = () => {
             size={"default"}
           />
         </div>
-        <Button disabled={!values.email} type="primary" size="medium">
+        <Button disabled={!values.email} type="primary" size="medium" htmlType="submit">
           {recoveryPasswordSuccess ? <Redirect to="/reset-password" /> : ""}
           Восстановить
         </Button>

@@ -36,7 +36,7 @@ const App: FC = () => {
   const location = useLocation<TLocation>();
   const dispatch = useDispatch();
   const history = useHistory();
-  const background = location.state.background;
+  const background = location.state?.background;
 
   const isLoading = useSelector((store) => store.burgerIngredients.isLoading);
   const dataRequest = useSelector(

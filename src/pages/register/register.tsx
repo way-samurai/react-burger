@@ -1,3 +1,4 @@
+import { FC, FormEvent } from 'react';
 import {
   Button,
   EmailInput,
@@ -10,14 +11,14 @@ import { useSelector, useDispatch } from "../../services/types/index";
 import { registrationUser } from "../../services/actions/auth";
 import { useForm } from "../../hooks/use-form";
 
-export const Register = () => {
+export const Register: FC = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user.user);
-  const isAuth = useSelector((store) => store.user.isAuth)
+  const isAuth = useSelector((store) => store.user.isAuthSuccess)
 
   const { values, handleValues } = useForm({name: "", email: "", password: ""});
 
-  const onFormSubmit = (e) => {
+  const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(
       registrationUser(values.name, values.email, values.password)
@@ -33,7 +34,7 @@ export const Register = () => {
       <h2 className={`${styles.title} text text_type_main-medium pb-6`}>
         Регистрация
       </h2>
-      <form className={styles.form} onSubmit={(e) => onFormSubmit(e)}>
+      <form className={styles.form} onSubmit={(e) => submit(e)}>
         <div className="pb-6">
           <Input
             type={"text"}
@@ -62,7 +63,7 @@ export const Register = () => {
             size="default"
           />
         </div>
-        <Button type="primary" size="medium">
+        <Button type="primary" size="medium" htmlType="submit">
           Зарегистрироваться
         </Button>
       </form>

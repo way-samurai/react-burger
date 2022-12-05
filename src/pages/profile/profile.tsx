@@ -1,3 +1,4 @@
+import { FC, FormEvent, SyntheticEvent } from 'react';
 import {
   Button,
   Input,
@@ -9,7 +10,7 @@ import profileStyle from "./profile.module.css";
 import { useForm } from "../../hooks/use-form";
 import { UserOrders } from "./orders/orders";
 
-export const Profile = () => {
+export const Profile: FC = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user.user);
 
@@ -23,12 +24,12 @@ export const Profile = () => {
     dispatch(logout());
   }
 
-  function submit(e) {
+  function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(updateUserData(values.email, values.name, values.password));
   }
 
-  function reset(e) {
+  function reset(e: SyntheticEvent) {
     e.preventDefault();
     setValues({
       email: user.email,
@@ -125,13 +126,14 @@ export const Profile = () => {
               />
             </div>
             <div className={profileStyle.buttons}>
-              <Button type="secondary" size="medium" onClick={reset}>
+              <Button type="secondary" size="medium" onClick={reset} htmlType="reset">
                 Oтмена
               </Button>
               <Button
                 disabled={!values.email && !values.password && !values.name}
                 type="primary"
                 size="medium"
+                htmlType="submit"
               >
                 Сохранить
               </Button>

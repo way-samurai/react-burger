@@ -11,7 +11,6 @@ type TProps = {
 
 const IngredientCategory: FC<TProps> = ({tabRef, name, type}) => {
   const data = useSelector((store) => store.burgerIngredients.data);
-  console.log(tabRef)
   return (
     <section className="mb-10" id={type}>
       <h2 className="text text_type_main-medium mb-6" ref={tabRef}>

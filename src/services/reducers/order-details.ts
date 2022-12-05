@@ -10,12 +10,14 @@ import { TOrderDetailsActions } from '../actions/order-details'
 export type TOrderDetailsState = {
   number: number | null,
   orderDetailsRequest: boolean,
+  orderDataSuccess: boolean,
   orderDetailsFailed: boolean
 }
 
 const initialState: TOrderDetailsState = {
   number: null,
   orderDetailsRequest: false,
+  orderDataSuccess: false,
   orderDetailsFailed: false
 }
 
@@ -25,6 +27,7 @@ export const orderReducer = (state = initialState, action: TOrderDetailsActions)
       return {
         ...state,
         orderDetailsRequest: true,
+        orderDataSuccess: false,
         orderDetailsFailed: false,
       }
     }
@@ -33,6 +36,7 @@ export const orderReducer = (state = initialState, action: TOrderDetailsActions)
         ...state,
         number: action.number,
         orderDetailsRequest: false,
+        orderDataSuccess: true,
         orderDetailsFailed: false,
       }
     }
@@ -41,6 +45,7 @@ export const orderReducer = (state = initialState, action: TOrderDetailsActions)
         ...state,
         number: null,
         orderDetailsRequest: false,
+        orderDataSuccess: false,
         orderDetailsFailed: true,
       }
     }
@@ -49,6 +54,7 @@ export const orderReducer = (state = initialState, action: TOrderDetailsActions)
         ...state,
         number: null,
         orderDetailsRequest: false,
+        orderDataSuccess: false,
         orderDetailsFailed: false,
       }
     }

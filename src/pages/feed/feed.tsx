@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
 import { useSelector, useDispatch } from "../../services/types/index";
 import { OrdersStatistics } from "../../components/orders-statistics/orders-statistics";
 
@@ -8,7 +8,7 @@ import { wsFeedConnectionClosed, wsFeedConnectionOpen } from "../../services/act
 
 import styles from "./feed.module.css";
 
-export const Feed = () => {
+export const Feed: FC = () => {
   const dispatch = useDispatch();
   const orders = useSelector((store) => store.wsFeed.orders);
 

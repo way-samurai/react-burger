@@ -8,7 +8,7 @@ import styles from "./burger-constructor.module.css";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import { useSelector, useDispatch } from "../../services/types/index";
-import { getOrderDetails } from "../../services/actions/order-details";
+import { getOrderDetails, resetOrderNumber } from "../../services/actions/order-details";
 import {
   CONSTRUCTOR_ADD_BUN,
   CONSTRUCTOR_ADD_ITEM,
@@ -17,21 +17,23 @@ import { useDrop } from "react-dnd";
 import ConstructorItems from "../burger-constructor-items/burger-constructor-items";
 import { useHistory } from "react-router-dom";
 import { TConstructorIngredient, TIngredient } from "../../services/types/data";
+import { resetConstructor } from "../../services/actions/constructor";
 
 interface IDropItem {
-	ingredient: TConstructorIngredient;
+  ingredient: TConstructorIngredient;
   _id: string;
   bun: TIngredient;
   fillings: TConstructorIngredient[]
 }
 
 const BurgerConstructor: FC = () => {
-  const isAuthSuccess = useSelector((store) => store.user.isAuthSuccess);
+  const { isAuthSuccess } = useSelector((store) => store.user);
   const { bun, ingredients } = useSelector((store) => store.burgerConstructor);
   const [modalActive, setModalActive] = useState(false);
   const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
   const history = useHistory();
+
 
   const allItemsId = useCallback(() => {
     let itemsId = [];
@@ -39,10 +41,8 @@ const BurgerConstructor: FC = () => {
     if (bun !== null) {
       let bunId = [bun._id];
       itemsId = bunId.concat(fillingId);
-
       return itemsId
-    }
-    return
+    } return []
   }, [ingredients, bun]);
 
   const filling = useMemo(
@@ -53,6 +53,7 @@ const BurgerConstructor: FC = () => {
   const openModal = () => {
     if (!isAuthSuccess) {
       history.push("/login");
+      return
     }
     setModalActive(true);
   }
@@ -61,12 +62,10 @@ const BurgerConstructor: FC = () => {
     setModalActive(false);
   }
 
-  const showOrderDetails = (productsid: any) => {
-      dispatch(getOrderDetails(productsid));
-
-    return
+  const showOrderDetails = (productsid: Array<string>) => {
+    dispatch(getOrderDetails(productsid));
   };
-  
+
   const [, dropTarget] = useDrop({
     accept: "ingredients",
     drop(item: IDropItem) {
@@ -81,10 +80,9 @@ const BurgerConstructor: FC = () => {
           data: { ...item.ingredient, id: Date.now() },
         });
       }
-      
+
     },
   });
-
 
   useEffect(() => {
     const totalPrice = filling.reduce(
@@ -160,11 +158,7 @@ const BurgerConstructor: FC = () => {
             </p>
             <CurrencyIcon type="primary" />
           </div>
-          {ingredients.length === 0 || bun === null ? (
-            <Button type="primary" size="large" htmlType="button" disabled>
-              Оформить заказ
-            </Button>
-          ) : (
+          {ingredients.length !== 0 && bun !== null ? (
             <Button
               type="primary"
               size="large"
@@ -174,6 +168,10 @@ const BurgerConstructor: FC = () => {
                 openModal();
               }}
             >
+              Оформить заказ
+            </Button>
+          ) : (
+            <Button type="primary" size="large" htmlType="button" disabled>
               Оформить заказ
             </Button>
           )}

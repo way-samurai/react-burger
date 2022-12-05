@@ -1,3 +1,4 @@
+import { FC, FormEvent } from 'react';
 import {
   Button,
   Input,
@@ -8,10 +9,11 @@ import { Link, Redirect, useLocation } from "react-router-dom";
 import { useForm } from "../../hooks/use-form";
 import { resetPassword } from "../../services/actions/auth";
 import styles from "./reset-password.module.css";
+import { TLocation } from '../../services/types/data';
 
-export const ResetPassword = () => {
+export const ResetPassword: FC = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const location = useLocation<TLocation>();
 
   const { resetPasswordSuccess, recoveryPasswordSuccess } = useSelector(
     (state) => state.user
@@ -19,7 +21,7 @@ export const ResetPassword = () => {
 
   const { values, handleValues } = useForm({ password: "", code: "" });
 
-  function formSubmit(e) {
+  function formSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(resetPassword(values.password, values.code));
   }
@@ -59,6 +61,7 @@ export const ResetPassword = () => {
             disabled={!values.password || !values.code}
             type="primary"
             size="medium"
+            htmlType="submit"
           >
             {!!resetPasswordSuccess ? (
               <Redirect to={location.state?.from || "/profile"} />

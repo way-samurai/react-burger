@@ -10,8 +10,6 @@ const BurgerIngredients: FC = () => {
   const [sauceRef, sauceInView] = useInView({ threshold: 0.1 });
   const [mainRef, mainInView] = useInView({ threshold: 0.1 });
 
-  console.log(bunRef)
-
   const clickOnTab = (type: string) => {
     setCurrent(type);
     const section = document.getElementById(type) as HTMLElement;

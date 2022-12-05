@@ -38,8 +38,8 @@ export type TAuthState = {
     password: string,
     code: string
   };
-   
-  user: TUser | null;
+
+  user: TUser;
 
   getUserDataRequest: boolean;
   getUserDataFaild: boolean;
@@ -64,7 +64,7 @@ export type TAuthState = {
   recoveryPasswordRequest: boolean;
   recoveryPasswordFaild: boolean;
   recoveryPasswordSuccess: boolean;
-  
+
   resetPasswordRequest: boolean;
   resetPasswordFaild: boolean;
   resetPasswordSuccess: boolean;
@@ -83,8 +83,11 @@ const initialState: TAuthState = {
     password: "",
     code: ""
   },
-   
-  user: null,
+
+  user: {
+    email: "",
+    name: "",
+  },
 
   getUserDataRequest: false,
   getUserDataFaild: false,
@@ -109,7 +112,7 @@ const initialState: TAuthState = {
   recoveryPasswordRequest: false,
   recoveryPasswordFaild: false,
   recoveryPasswordSuccess: false,
-  
+
   resetPasswordRequest: false,
   resetPasswordFaild: false,
   resetPasswordSuccess: false,
@@ -135,7 +138,7 @@ export const authReducer = (state = initialState, action: TAuthActions): TAuthSt
         isAuthSuccess: false,
       }
     }
-    
+
     //Получение данных пользователя
     case GET_USER_REQUEST: {
       return {
@@ -202,7 +205,7 @@ export const authReducer = (state = initialState, action: TAuthActions): TAuthSt
           ...state.form,
           email: "",
           password: "",
-          name: "", 
+          name: "",
         },
       }
     }
@@ -262,13 +265,13 @@ export const authReducer = (state = initialState, action: TAuthActions): TAuthSt
         authorizationRequest: false,
         authorizationFaild: true,
         authorizationSuccess: false,
-      
+
         isAuthSuccess: false,
       }
     }
 
     case LOGIN_SUCCESS: {
-      
+
       return {
         ...state,
 
@@ -281,7 +284,7 @@ export const authReducer = (state = initialState, action: TAuthActions): TAuthSt
           password: '',
         },
 
-        
+
         isAuthSuccess: true,
 
         authorizationRequest: false,
@@ -312,7 +315,11 @@ export const authReducer = (state = initialState, action: TAuthActions): TAuthSt
     case LOGOUT_SUCCESS: {
       return {
         ...state,
-        user: null,
+        user: {
+          ...state.user,
+          email: "",
+          name: "",
+        },
 
         form: {
           ...state.form,
@@ -352,7 +359,7 @@ export const authReducer = (state = initialState, action: TAuthActions): TAuthSt
       return {
         ...state,
 
-        form: { 
+        form: {
           ...state.form,
           email: '',
         },
@@ -362,7 +369,7 @@ export const authReducer = (state = initialState, action: TAuthActions): TAuthSt
         recoveryPasswordSuccess: true,
       }
     }
-    
+
 
     //Сброс пароля
     case RESET_PASSWORD_REQUEST: {
@@ -394,7 +401,7 @@ export const authReducer = (state = initialState, action: TAuthActions): TAuthSt
         resetPasswordSuccess: true,
       }
     }
-    
+
     //Обновление токена
     case UPDATE_TOKEN_REQUEST: {
       return {

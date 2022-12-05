@@ -16,7 +16,7 @@ export const ProtectedRoute: FC<TProtectedRoute> = ({
   children,
   ...rest
 }) => {
-  const user = useSelector((store) => store.user.user);
+  const { email, name } = useSelector((store) => store.user.user);
   const location = useLocation<TLocation>();
 
   const isAuthSuccess = useSelector((store) => store.user.isAuthSuccess);
@@ -25,7 +25,7 @@ export const ProtectedRoute: FC<TProtectedRoute> = ({
     <Preloader />;
   }
 
-  if (forNonAuthUsers && user) {
+  if (forNonAuthUsers && email !== "" && name !== "") {
     const { from } = location.state || { from: { pathname: "/" } };
     return (
       <Route {...rest}>
@@ -34,7 +34,7 @@ export const ProtectedRoute: FC<TProtectedRoute> = ({
     );
   }
 
-  if (!forNonAuthUsers && !user) {
+  if (!forNonAuthUsers && email === "" && name === "") {
     return (
       <Route {...rest}>
         <Redirect to={{ pathname: "/login", state: { from: location } }} />

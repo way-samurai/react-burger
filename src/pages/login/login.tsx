@@ -1,3 +1,4 @@
+import { FC, FormEvent } from 'react'
 import {
   Button,
   EmailInput,
@@ -9,12 +10,12 @@ import { useForm } from "../../hooks/use-form";
 import { authorization } from "../../services/actions/auth";
 import styles from "./login.module.css";
 
-export const Login = () => {
+export const Login: FC = () => {
   const { values, handleValues } = useForm({ email: "", password: "" });
 
   const dispatch = useDispatch();
   
-  function onSubmit(e) {
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(authorization(values.email, values.password));
   }
@@ -45,6 +46,7 @@ export const Login = () => {
           disabled={!values.password || !values.email}
           type="primary"
           size="medium"
+          htmlType='submit'
         >
           Войти
         </Button>

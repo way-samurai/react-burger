@@ -1,11 +1,11 @@
 import { apiPostOrder } from "../../utils/api/api";
 import { AppDispatch } from "../types";
 
-import { 
-  CREATE_ORDER_FAILED, 
-  CREATE_ORDER_REQUEST, 
-  CREATE_ORDER_SUCCESS, 
-  RESET_ORDER 
+import {
+  CREATE_ORDER_FAILED,
+  CREATE_ORDER_REQUEST,
+  CREATE_ORDER_SUCCESS,
+  RESET_ORDER
 } from "./constants/order-details";
 
 export interface ICreateOrderRequest {
@@ -25,18 +25,18 @@ export interface IResetOrder {
   readonly type: typeof RESET_ORDER;
 }
 
-export type TOrderDetailsActions = 
+export type TOrderDetailsActions =
   | ICreateOrderRequest
   | ICreateOrderSuccess
   | ICreateOrderFailed
   | IResetOrder
 
-export function getOrderDetails(order: Array<string>) {
+export function getOrderDetails(orderData: Array<string>) {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: CREATE_ORDER_REQUEST
     });
-    apiPostOrder(order)
+    apiPostOrder(orderData)
       .then((res) => {
         dispatch({
           type: CREATE_ORDER_SUCCESS,
