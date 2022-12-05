@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import PropTypes from "prop-types";
+import { useRef, FC } from "react";
 import {
   ConstructorElement,
   DragIcon,
@@ -10,15 +9,26 @@ import {
   deleteConstructorItem,
 } from "../../services/actions/constructor";
 import styles from "./burger-constructor-items.module.css";
-import ingredientType from "../../utils/prop-types";
 import { CONSTRUCTOR_MOVE_ITEM } from "../../services/actions/constants/constructor";
+import { TConstructorIngredient } from "../../services/types/data";
 
-const ConstructorItems = ({ index, item }) => {
+type TDragItem = {
+	index: number;
+	type: string;
+	id?: string;
+};
+
+type TConstructorItems = {
+  index: number, 
+  item: TConstructorIngredient;
+}
+
+const ConstructorItems: FC<TConstructorItems> = ({ index, item }) => {
 	const { image, id, price, name } = item;
 	const ref = useRef(null);
   const dispatch = useDispatch();
 
-  const onDelete = (id) => {
+  const onDelete = (id: string) => {
     dispatch(
       deleteConstructorItem(id)
     );
@@ -34,7 +44,7 @@ const ConstructorItems = ({ index, item }) => {
     },
   });
 
-  const [, drop] = useDrop({
+  const [, drop] = useDrop<TDragItem >({
     accept: "item",
     hover(item) {
       if (!ref.current) {
@@ -68,10 +78,5 @@ const ConstructorItems = ({ index, item }) => {
     </li>
   );
 };
-
-ConstructorItems.propTypes = {
-  index: PropTypes.number.isRequired,
-	item: ingredientType.isRequired
-}
 
 export default ConstructorItems;

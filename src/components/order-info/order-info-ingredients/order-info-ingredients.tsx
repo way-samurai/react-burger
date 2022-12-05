@@ -1,16 +1,20 @@
-import { useMemo } from "react";
-import propTypes from "prop-types";
-import { useSelector } from "../../services/types/index";
+import { FC, useMemo } from "react";
+import { useSelector } from "../../../services/types";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./order-info-ingredients.module.css";
 import { OrderImg } from "../../orders/order-card/orders-img/order-img";
+import { TIngredient } from "../../../services/types/data";
 
-export const OrdersInfoIngredients = ({ details }) => {
+export type TOrderInfoDetails = {
+	details: Array<TIngredient>;
+}
+
+export const OrdersInfoIngredients: FC<TOrderInfoDetails> = ({ details }) => {
   const ingredients = useSelector(
     (store) => store.burgerIngredients.data
   );
 
-  const count = (elem) => {
+  const count = (elem: object) => {
     let count = details.filter((item) => {
       return item === elem;
     }).length;
@@ -30,7 +34,7 @@ export const OrdersInfoIngredients = ({ details }) => {
       {orderIngredient &&
         [...new Set(orderIngredient)].map((item) => {
           return (
-            <li className={`${styles.item} pr-6`} key={item._id}>
+            <li className={`${styles.item} pr-6`} key={item?._id}>
               {item && (
                 <>
                   <div className={styles.info}>
@@ -58,6 +62,3 @@ export const OrdersInfoIngredients = ({ details }) => {
   );
 };
 
-OrdersInfoIngredients.propTypes = {
-  details: propTypes.array.isRequired,
-};

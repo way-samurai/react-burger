@@ -1,12 +1,12 @@
 import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./ingredient.module.css";
-import ingredientType from "../../utils/prop-types";
 import { useDrag } from "react-dnd";
-import { useMemo, } from "react";
+import { useMemo, FC } from "react";
 import { useSelector } from "../../services/types/index";
 import { Link, useLocation, } from "react-router-dom";
+import { TIngredient } from "../../services/types/data";
 
-const Ingredient = (ingredient) => {
+const Ingredient: FC<TIngredient> = (ingredient) => {
   const location = useLocation();
   const { bun, ingredients } = useSelector((store) => store.burgerConstructor);
 
@@ -57,7 +57,5 @@ const Ingredient = (ingredient) => {
     </Link>
   );
 };
-
-Ingredient.propTypes = ingredientType.isRequired;
 
 export default Ingredient;

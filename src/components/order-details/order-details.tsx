@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect, FC } from "react";
 import style from "./order-details.module.css";
 import orderAccepted from "../../images/order_accpeted.png";
 import { useSelector, useDispatch } from "../../services/types/index";
@@ -7,12 +7,12 @@ import { Preloader } from "../preloader/preloader";
 import { resetOrderNumber } from "../../services/actions/order-details";
 import { resetConstructor } from "../../services/actions/constructor";
 
-const OrderDetails = () => {
+const OrderDetails: FC = () => {
   const dispatch = useDispatch();
   const number = useSelector((store) => store.order.number);
 
   useEffect(() => {
-    return dispatch(resetOrderNumber());
+    return () => {dispatch(resetOrderNumber())}
   }, []);
 
   useEffect(() => {

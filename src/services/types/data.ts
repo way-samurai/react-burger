@@ -37,6 +37,16 @@ export type TFeed = {
 	_id: string;
 }
 
+export type TModal = {
+  title?: string;
+  onClose: () => void;
+  children?: ReactNode;
+}
+
+export type TModalOverlay = {
+  onClose: () => void;
+}
+
 export type TOrder = {
 	createdAt: string;
 	ingredients: Array<TIngredient>;
@@ -64,3 +74,20 @@ export type TFeedResponse = {
 	totalToday: number;
 	orders: Array<TFeed>;
 }
+
+export type TLocation = {
+	background: {
+		pathname: string;
+		search: string;
+		hash: string;
+		state: null;
+		key: string;
+	}
+	from: string;
+	state?: object;
+};
+
+export type TUseRouteMatch = {
+  [id: string]: string | undefined
+}
+  

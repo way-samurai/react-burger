@@ -23,7 +23,6 @@ export interface IWsFeedConnectionError {
 
 export interface IWsFeedConnectionClosed {
   readonly type: typeof WS_FEED_CONNECTION_CLOSED;
-  readonly payload: CloseEvent;
 }
 
 export interface IWsFeedGetMessage {
@@ -63,10 +62,9 @@ export const wsFeedConnectionError = (message: MessageEvent): IWsFeedConnectionE
 	};
 };
 
-export const wsFeedConnectionClosed = (event: CloseEvent): IWsFeedConnectionClosed => {
+export const wsFeedConnectionClosed = (): IWsFeedConnectionClosed => {
 	return {
-		type: WS_FEED_CONNECTION_CLOSED,
-    payload: event
+		type: WS_FEED_CONNECTION_CLOSED
 	};
 };
 

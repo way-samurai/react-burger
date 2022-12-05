@@ -1,11 +1,17 @@
-import Ingredient from "../ingredient/ingredient.jsx";
+import Ingredient from "../ingredient/ingredient";
 import styles from "./ingredients-category.module.css";
-import PropTypes from "prop-types";
 import { useSelector } from "../../services/types/index";
+import { FC } from 'react';
 
-const IngredientCategory = ({tabRef, name, type}) => {
+type TProps = {
+  tabRef: any,
+  name: string,
+  type: string
+}
+
+const IngredientCategory: FC<TProps> = ({tabRef, name, type}) => {
   const data = useSelector((store) => store.burgerIngredients.data);
-
+  console.log(tabRef)
   return (
     <section className="mb-10" id={type}>
       <h2 className="text text_type_main-medium mb-6" ref={tabRef}>
@@ -29,14 +35,5 @@ const IngredientCategory = ({tabRef, name, type}) => {
     </section>
   );
 }
-
-IngredientCategory.propTypes = {
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  tabRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  ]),
-};
 
 export default IngredientCategory

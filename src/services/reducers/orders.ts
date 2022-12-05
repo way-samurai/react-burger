@@ -15,7 +15,7 @@ export type TOrdersState = {
   error: MessageEvent | null,
 }
 
-const initialState = {
+const initialState: TOrdersState = {
   wsConnected: false,
   orders: [],
   total: 0,
@@ -23,7 +23,7 @@ const initialState = {
   error: null,
 }
 
-export const ordersReducer = (state = initialState, action: TWsOrdersActions) => {
+export const ordersReducer = (state = initialState, action: TWsOrdersActions): TOrdersState => {
   switch (action.type) {
     case WS_ORDERS_CONNECTION_SUCCESS:
       return {

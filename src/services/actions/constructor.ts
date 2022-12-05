@@ -1,4 +1,4 @@
-import { TIngredient } from "../types/data";
+import { TConstructorIngredient, TIngredient } from "../types/data";
 import { 
   CONSTRUCTOR_ADD_BUN, 
   CONSTRUCTOR_ADD_ITEM, 
@@ -19,7 +19,7 @@ export interface IConstructorAddBun {
 
 export interface IConstructorAddItem {
   readonly type: typeof CONSTRUCTOR_ADD_ITEM;
-  readonly data: TIngredient;
+  readonly data: TConstructorIngredient;
 }
 
 export interface IConstructorResetItem {

@@ -18,7 +18,7 @@ const initialState: TConstructorState = {
   ingredients: [],
 };
 
-export const constructorReducer = (state = initialState, action: TConstructorActions) => {
+export const constructorReducer = (state = initialState, action: TConstructorActions): TConstructorState => {
   switch (action.type) {
     case CONSTRUCTOR_DELETE_ITEM: {
       return {

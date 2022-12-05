@@ -1,14 +1,19 @@
-import { useMemo } from "react";
-import { useSelector } from "../../services/types/index";
-import propTypes from "prop-types";
+import { useMemo, FC } from "react";
+import { useSelector } from "../../../services/types/index";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import { OrderImg } from "./orders-img/order-img";
 import { formatDate } from "../../../utils/formate-date";
 
 import styles from "./order-card.module.css";
+import { TFeed } from "../../../services/types/data";
 
-export const OrderCard = ({ order, statusVue }) => {
+type TOrderCard = {
+  order: TFeed;
+  statusVue: boolean;
+}
+
+export const OrderCard: FC<TOrderCard> = ({ order, statusVue }) => {
   const ingredients = useSelector((store) => store.burgerIngredients.data);
   const { createdAt, number, name } = order;
   const arrIngredientsLength = order.ingredients.length;
@@ -21,7 +26,7 @@ export const OrderCard = ({ order, statusVue }) => {
         return id === item._id;
       });
     });
-  }, [order?.ingredients, ingredients]);
+  }, [order.ingredients, ingredients]);
 
   const orderTotalPrice = useMemo(() => {
     return orderIngredientsData?.reduce((sum, item) => {
@@ -117,9 +122,4 @@ export const OrderCard = ({ order, statusVue }) => {
       </div>
     </div>
   );
-};
-
-OrderCard.propTypes = {
-  order: propTypes.object.isRequired,
-  status: propTypes.bool,
 };

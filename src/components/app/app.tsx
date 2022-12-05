@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
 import AppHeader from "../app-header/app-header";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
@@ -30,12 +30,13 @@ import { Preloader } from "../preloader/preloader";
 import { getCookie } from "../../utils/cookie/cookie";
 import { Feed } from "../../pages/feed/feed";
 import { OrderInfo } from "../order-info/order-info";
+import { TLocation, TUseRouteMatch } from "../../services/types/data";
 
-function App() {
-  const location = useLocation();
+const App: FC = () => {
+  const location = useLocation<TLocation>();
   const dispatch = useDispatch();
   const history = useHistory();
-  const background = location.state?.background;
+  const background = location.state.background;
 
   const isLoading = useSelector((store) => store.burgerIngredients.isLoading);
   const dataRequest = useSelector(
@@ -43,8 +44,8 @@ function App() {
   );
   const hasError = useSelector((store) => store.burgerIngredients.hasError);
 
-  const idOrderFeedInfo = useRouteMatch(["/feed/:id"])?.params?.id;
-  const idOrderProfileInfo = useRouteMatch(["/profile/orders/:id"])?.params?.id;
+  const idOrderFeedInfo = useRouteMatch<TUseRouteMatch>(["/feed/:id"])?.params?.id;
+  const idOrderProfileInfo = useRouteMatch<TUseRouteMatch>(["/profile/orders/:id"])?.params?.id;
 
   const handleCloseModal = () => {
     history.goBack();

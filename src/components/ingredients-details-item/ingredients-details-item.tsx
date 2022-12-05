@@ -1,8 +1,12 @@
 import style from "./ingredients-details-item.module.css";
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 
+type TIngredientsDetailsItem = {
+  text: string, 
+  value: number
+}
 
-const IngredientsDetailsItem = ({text, value}) => {
+const IngredientsDetailsItem:FC<TIngredientsDetailsItem> = ({text, value}) => {
   return (
     <li className={`${style.item}`}>
       <p className={`${style.text} text text_type_main-default text_color_inactive pb-2`}>
@@ -13,11 +17,6 @@ const IngredientsDetailsItem = ({text, value}) => {
       </p>
     </li>
   );
-};
-
-IngredientsDetailsItem.propTypes = {
-  text: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
 };
 
 export default IngredientsDetailsItem;

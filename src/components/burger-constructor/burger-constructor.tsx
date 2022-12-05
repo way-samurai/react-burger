@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo, useState, } from "react";
+import { useCallback, useEffect, useMemo, useState, FC } from "react";
 import {
   ConstructorElement,
   CurrencyIcon,
   Button,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+} from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from "./burger-constructor.module.css";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
@@ -16,8 +16,16 @@ import {
 import { useDrop } from "react-dnd";
 import ConstructorItems from "../burger-constructor-items/burger-constructor-items";
 import { useHistory } from "react-router-dom";
+import { TConstructorIngredient, TIngredient } from "../../services/types/data";
 
-const BurgerConstructor = () => {
+interface IDropItem {
+	ingredient: TConstructorIngredient;
+  _id: string;
+  bun: TIngredient;
+  fillings: TConstructorIngredient[]
+}
+
+const BurgerConstructor: FC = () => {
   const isAuthSuccess = useSelector((store) => store.user.isAuthSuccess);
   const { bun, ingredients } = useSelector((store) => store.burgerConstructor);
   const [modalActive, setModalActive] = useState(false);
@@ -28,11 +36,13 @@ const BurgerConstructor = () => {
   const allItemsId = useCallback(() => {
     let itemsId = [];
     let fillingId = ingredients.map((item) => item._id);
-    let bunId = [bun._id];
+    if (bun !== null) {
+      let bunId = [bun._id];
+      itemsId = bunId.concat(fillingId);
 
-    itemsId = bunId.concat(fillingId);
-
-    return itemsId
+      return itemsId
+    }
+    return
   }, [ingredients, bun]);
 
   const filling = useMemo(
@@ -51,13 +61,15 @@ const BurgerConstructor = () => {
     setModalActive(false);
   }
 
-  const showOrderDetails = (productsid) => {
-    dispatch(getOrderDetails(productsid));
+  const showOrderDetails = (productsid: any) => {
+      dispatch(getOrderDetails(productsid));
+
+    return
   };
   
   const [, dropTarget] = useDrop({
     accept: "ingredients",
-    drop(item) {
+    drop(item: IDropItem) {
       if (item.ingredient.type === "bun") {
         dispatch({
           type: CONSTRUCTOR_ADD_BUN,
@@ -98,7 +110,7 @@ const BurgerConstructor = () => {
                   type="top"
                   isLocked={true}
                   text={`${bun.name} (верх)`}
-                  price={`${bun.price}`}
+                  price={bun.price}
                   thumbnail={`${bun.image}`}
                 />
               </div>
@@ -126,7 +138,7 @@ const BurgerConstructor = () => {
                   type="bottom"
                   isLocked={true}
                   text={`${bun.name} (низ)`}
-                  price={`${bun.price}`}
+                  price={bun.price}
                   thumbnail={`${bun.image}`}
                 />
               </div>
@@ -149,13 +161,14 @@ const BurgerConstructor = () => {
             <CurrencyIcon type="primary" />
           </div>
           {ingredients.length === 0 || bun === null ? (
-            <Button type="primary" size="large" disabled>
+            <Button type="primary" size="large" htmlType="button" disabled>
               Оформить заказ
             </Button>
           ) : (
             <Button
               type="primary"
               size="large"
+              htmlType='button'
               onClick={() => {
                 showOrderDetails(allItemsId());
                 openModal();

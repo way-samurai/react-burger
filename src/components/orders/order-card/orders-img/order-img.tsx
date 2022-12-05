@@ -1,7 +1,12 @@
-import propTypes from "prop-types";
+import { FC } from 'react'
 import styles from "./order-img.module.css";
 
-export const OrderImg = ({ image, alt }) => {
+type TOrderImg = {
+  image: string;
+  alt: string;
+}
+
+export const OrderImg: FC<TOrderImg> = ({ image, alt }) => {
   return (
     <div className={styles.content}>
       <div className={styles.item}>
@@ -9,9 +14,4 @@ export const OrderImg = ({ image, alt }) => {
       </div>
     </div>
   );
-};
-
-OrderImg.propTypes = {
-  image: propTypes.string.isRequired,
-  alt: propTypes.string.isRequired,
 };

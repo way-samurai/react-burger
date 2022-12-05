@@ -23,7 +23,6 @@ export interface IWsOrdersConnectionError {
 
 export interface IWsOrdersConnectionClosed {
   readonly type: typeof WS_ORDERS_CONNECTION_CLOSED;
-  readonly payload: CloseEvent;
 }
 
 export interface IWsOrdersGetMessage {
@@ -63,10 +62,9 @@ export const wsOrdersConnectionError = (message: MessageEvent): IWsOrdersConnect
 	};
 };
 
-export const wsOrdersConnectionClosed = (event: CloseEvent): IWsOrdersConnectionClosed => {
+export const wsOrdersConnectionClosed = (): IWsOrdersConnectionClosed => {
 	return {
-		type: WS_ORDERS_CONNECTION_CLOSED,
-    payload: event
+		type: WS_ORDERS_CONNECTION_CLOSED
 	};
 };
 

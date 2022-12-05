@@ -1,8 +1,9 @@
+import { FC } from 'react'
 import { useSelector } from "../../services/types/index";
 import { filterOrders } from "../../utils/filter-orders";
 import styles from "./orders-statistics.module.css";
 
-export const OrdersStatistics = () => {
+export const OrdersStatistics: FC = () => {
   const { total, totalToday, orders } = useSelector((store) => store.wsFeed);
 
   const statusArrays = filterOrders(orders);

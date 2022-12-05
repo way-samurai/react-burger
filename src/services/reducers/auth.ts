@@ -74,7 +74,7 @@ export type TAuthState = {
   updateTokenSuccess: boolean;
 }
 
-const initialState = {
+const initialState: TAuthState = {
   isAuthSuccess: false,
 
   form: {

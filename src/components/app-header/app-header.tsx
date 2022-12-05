@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
   Logo,
   BurgerIcon,
@@ -8,7 +9,7 @@ import styles from "./app-header.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "../../services/types/index";
 
-const AppHeader = () => {
+const AppHeader: FC = () => {
   const location = useLocation();
   const isAuthSuccess = useSelector((store) => store.user.isAuthSuccess);
 

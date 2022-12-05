@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "../../services/types/index";
+import { useSelector, useDispatch } from "../../../services/types/index";
 import { Link, useLocation } from "react-router-dom";
 import { OrderCard } from "../../../components/orders/order-card/order-card";
 import { Preloader } from "../../../components/preloader/preloader";

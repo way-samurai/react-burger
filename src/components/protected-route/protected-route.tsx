@@ -1,15 +1,23 @@
+import { FC, ReactNode } from 'react';
 import { useSelector } from "../../services/types/index";
 import { Redirect, Route, useLocation } from "react-router-dom";
 import { Preloader } from "../preloader/preloader";
-import PropTypes from "prop-types";
+import { TLocation } from '../../services/types/data';
 
-export const ProtectedRoute = ({
+type TProtectedRoute = {
+  forNonAuthUsers: boolean;
+  children: ReactNode;
+  path: string;
+  exact: boolean;
+}
+
+export const ProtectedRoute: FC<TProtectedRoute> = ({
   forNonAuthUsers = false,
   children,
   ...rest
 }) => {
   const user = useSelector((store) => store.user.user);
-  const location = useLocation();
+  const location = useLocation<TLocation>();
 
   const isAuthSuccess = useSelector((store) => store.user.isAuthSuccess);
 
@@ -35,9 +43,4 @@ export const ProtectedRoute = ({
   }
 
   return <Route {...rest}>{children}</Route>;
-};
-
-ProtectedRoute.propTypes = {
-  forNonAuthUsers: PropTypes.bool,
-  children: PropTypes.element.isRequired,
 };

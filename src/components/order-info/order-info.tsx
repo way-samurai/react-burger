@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, FC } from "react";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useSelector, useDispatch } from "../../services/types/index";
 import { useLocation, useParams, useRouteMatch } from "react-router-dom";
@@ -7,15 +7,16 @@ import styles from "./order-info.module.css";
 import { wsFeedConnectionClosed, wsFeedConnectionOpen } from "../../services/actions/actions-ws/ws_feed-action-ws";
 import { wsOrdersConnectionClosed, wsOrdersConnectionOpen } from "../../services/actions/actions-ws/ws_orders-action-ws";
 import { OrdersInfoIngredients } from "./order-info-ingredients/order-info-ingredients";
+import { TIngredient, TLocation } from "../../services/types/data";
 
-export const OrderInfo = () => {
+export const OrderInfo: FC = () => {
   const dispatch = useDispatch();
   const match = useRouteMatch();
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const isProfileOrders = "/profile/orders/:id";
   const isFeed = "/feed/:id";
 
-  const location = useLocation();
+  const location = useLocation<TLocation>();
   const background = location.state?.background;
 
   const ingredients = useSelector(
@@ -25,7 +26,7 @@ export const OrderInfo = () => {
   const profileOrders = useSelector((store) => store.wsOrders.orders);
 
   let orders = match.path === isProfileOrders ? profileOrders : feedOrders;
-  let order = orders?.find((order) => order._id === id);
+  let order = orders.find((order) => order._id === id);
 
   const orderIngredientsData = useMemo(() => {
     return order?.ingredients.map((id) => {
@@ -40,7 +41,10 @@ export const OrderInfo = () => {
       if (item?.type === "bun") {
         return (sum += item.price * 2);
       }
-      return (sum += item.price);
+      if (item?.type !== ("bun" && undefined)) {
+        return (sum += item.price);
+      }
+      return sum
     }, 0);
   }, [orderIngredientsData]);
 
@@ -93,7 +97,7 @@ export const OrderInfo = () => {
           )}
           <h3 className={`text text_type_main-medium pb-6`}>Состав:</h3>
           <div>
-            <OrdersInfoIngredients details={orderIngredientsData} /> 
+            <OrdersInfoIngredients details={orderIngredientsData as Array<TIngredient>} /> 
           </div>
           <div className={`${styles.total} pt-10`}>
             <p className="text text_type_main-default text_color_inactive pb-10">
