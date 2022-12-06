@@ -8,7 +8,7 @@ import styles from "./burger-constructor.module.css";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import { useSelector, useDispatch } from "../../services/types/index";
-import { getOrderDetails, resetOrderNumber } from "../../services/actions/order-details";
+import { getOrderDetails } from "../../services/actions/order-details";
 import {
   CONSTRUCTOR_ADD_BUN,
   CONSTRUCTOR_ADD_ITEM,
@@ -17,7 +17,6 @@ import { useDrop } from "react-dnd";
 import ConstructorItems from "../burger-constructor-items/burger-constructor-items";
 import { useHistory } from "react-router-dom";
 import { TConstructorIngredient, TIngredient } from "../../services/types/data";
-import { resetConstructor } from "../../services/actions/constructor";
 
 interface IDropItem {
   ingredient: TConstructorIngredient;

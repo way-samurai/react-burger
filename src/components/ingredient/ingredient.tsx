@@ -9,7 +9,7 @@ import { TIngredient } from "../../services/types/data";
 const Ingredient: FC<TIngredient> = (ingredient) => {
   const location = useLocation();
   const { bun, ingredients } = useSelector((store) => store.burgerConstructor);
-
+  
   const [{ opacity }, dragRef] = useDrag({
     type: "ingredients",
     item: { ingredient },
@@ -28,6 +28,7 @@ const Ingredient: FC<TIngredient> = (ingredient) => {
       },
     [bun, ingredients, ingredient._id]
   );
+  console.log(location)
 
   return (
     <Link
