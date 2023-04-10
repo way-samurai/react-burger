@@ -1,6 +1,8 @@
 {
+  "repository": "https://github.com/way-samurai/react-burger.git",
+  "author": "Alexander Goncharov <GoncharovNVCHK@yandex.ru>",
   "name": "react-burger",
-  "homepage": "https://way-samurai.github.io/",
+  "homepage": "./",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

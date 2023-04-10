@@ -28,7 +28,6 @@ const Ingredient: FC<TIngredient> = (ingredient) => {
       },
     [bun, ingredients, ingredient._id]
   );
-  console.log(location)
 
   return (
     <Link
