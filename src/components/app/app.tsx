@@ -44,8 +44,11 @@ const App: FC = () => {
   );
   const hasError = useSelector((store) => store.burgerIngredients.hasError);
 
-  const idOrderFeedInfo = useRouteMatch<TUseRouteMatch>(["/feed/:id"])?.params?.id;
-  const idOrderProfileInfo = useRouteMatch<TUseRouteMatch>(["/profile/orders/:id"])?.params?.id;
+  const idOrderFeedInfo = useRouteMatch<TUseRouteMatch>(["/feed/:id"])?.params
+    ?.id;
+  const idOrderProfileInfo = useRouteMatch<TUseRouteMatch>([
+    "/profile/orders/:id",
+  ])?.params?.id;
 
   const handleCloseModal = () => {
     history.goBack();
@@ -66,7 +69,7 @@ const App: FC = () => {
     <div className={appStyle.app}>
       <AppHeader />
       <Switch location={background || location}>
-        <Route path="/" exact >
+        <Route path="/" exact>
           <main className={appStyle.main}>
             {isLoading && <Preloader />}
             {hasError && "Произошла ошибка"}
@@ -157,6 +160,6 @@ const App: FC = () => {
       )}
     </div>
   );
-}
+};
 
 export default App;
